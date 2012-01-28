@@ -1,0 +1,2 @@
+Website of a insurance broker
+- Requirement: Create file db / database.yml

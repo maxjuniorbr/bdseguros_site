@@ -1,0 +1,95 @@
+!!!
+%html
+  %head
+    %title BDSeguros
+    = stylesheet_link_tag    "application"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+  %body
+    #wrapper
+      #header
+        .wrapper
+          %a#logo{:href => "http://bdseguros.com.br/"}
+            %img{:alt => "BDSeguros", :src => "../assets/logo.png", :title => "BDSeguros"}
+          .header_menu
+            %img{:alt => "Telefone", :src => "../assets/phone.png", :title => "Telefone (44) 3233-2184 ou (44) 3232-1896"}
+      .menu
+        .wrapper
+          %ul
+            %li 
+              %a{:href => "#"} Quem somos
+            %li 
+              %a{:href => "#"} Seguros
+            %li 
+              %a{:href => "#"} Sinistros
+            %li 
+              %a{:href => "#"} Seguradoras            
+            %li 
+              %a{:href => "#"} Cotação
+            %li 
+              %a{:href => "#"} Glossário
+            %li 
+              %a{:href => "#"} Contato
+      #slider_wrapper
+        #slider_box
+          #sliders
+            %div
+              %a{:href => "#"}
+                %img{:alt => "Seguro Automóvel", :src => "../assets/slide_auto.png", :title => "Seguro Automóvel"}
+            %div
+              %a{:href => "#"}
+                %img{:alt => "Seguro Residencia", :src => "../assets/slide_casa.png", :title => "Seguro Residencia"}
+            %div
+              %a{:href => "#"}
+                %img{:alt => "Seguro Empresa", :src => "../assets/slide_emp.png", :title => "Seguro Empresa"}
+    = yield
+    #footer
+      .wrapper
+        %ul#footer_menu
+          %li
+            %h4 Seguros
+            %ul
+              %li
+                %a{:href => "#"} Para você
+              %li
+                %a{:href => "#"} Para sua empresa
+          %li
+            %h4 Sinistros
+            %ul
+              %li
+                %a{:href => "#"} Atendimento a sinistros
+          %li
+            %h4 Seguradoras
+            %ul
+              %li
+                %a{:href => "#"} Nossos parceiros
+          %li
+            %h4 Outros links
+            %ul
+              %li
+                %a{:href => "#"} Quem somos
+              %li
+                %a{:href => "#"} Cotação
+              %li
+                %a{:href => "#"} Glossário
+          %li
+            %h4 Contato
+            %ul
+              %li
+                %a{:href => "#"} Fale conosco
+            %ul
+              %li
+                %a{:href => "#"} Trabalhe conosco
+      #copyright
+        Copyright © 1998-2012 Bornia e Dianin Corretora de Seguros. Todo o conteúdo deste site é de uso exclusivo.
+:javascript
+  $(document).ready(function(){
+    $('#sliders').bxSlider({
+      randomStart: true,
+      mode: 'fade',
+      pager: true,
+      auto: true,
+      pause: 5000,
+      controls: false
+    });
+  });
