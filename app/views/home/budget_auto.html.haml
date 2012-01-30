@@ -89,21 +89,27 @@
           %tr
             %td Renavam:
             %td 
-              = f.text_field :renavam, :maxlength => 30, :size => 40
+              = f.text_field :renavam, :maxlength => 30, :size => 20
+              Estado:
+              = f.select :renavam_state, options_for_select(["AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MG", "MS", "MT", "PA", "PB", "PE", "PI", "PR", "RJ", "RN", "RO", "RR", "RS", "SC", "SE", "SP", "TO"]), {:prompt => "Selecione"}
           %tr
             %td CEP de circulação*:
             %td 
-              = f.text_field :zip_code_1, :maxlength => 9, :size => 40, :class => "required"
+              = f.text_field :zip_code_1, :maxlength => 9, :size => 20, :class => "required"
+              Estado:
+              = f.select :zip_code_1_state, options_for_select(["AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MG", "MS", "MT", "PA", "PB", "PE", "PI", "PR", "RJ", "RN", "RO", "RR", "RS", "SC", "SE", "SP", "TO"]), {:prompt => "Selecione"}, {:class => "required"}
           %tr
             %td CEP de pernoite*:
             %td 
-              = f.text_field :zip_code_2, :maxlength => 9, :size => 40, :class => "required"
+              = f.text_field :zip_code_2, :maxlength => 9, :size => 20, :class => "required"
+              Estado:
+              = f.select :zip_code_2_state, options_for_select(["AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MG", "MS", "MT", "PA", "PB", "PE", "PI", "PR", "RJ", "RN", "RO", "RR", "RS", "SC", "SE", "SP", "TO"]), {:prompt => "Selecione"}, {:class => "required"}
           %tr
             %td Proprietário do veículo*:
             %td 
               = f.select :owner, options_for_select(["Próprio", "Cônjuge", "Filhos", "Pais", "Outros"]), {:prompt => "Selecione"}, {:class => "required"}
           %tr
-            %td Opcionais do veículo
+            %td Opcionais do veículo:
             %td 
               = f.check_box :ar
               %span{:style => "font-weight: normal"} Ar-Condicionado
@@ -206,7 +212,7 @@
           %tr
             %td Estado civil*:
             %td 
-              = f.select :marital_status_perfil, options_for_select(["Solteiro(a)", "Casado", "União Estável (minimo 2 anos)", "Separado", "Divorciado", "Viúvo"]), {:prompt => "Selecione"}, {:class => "required"}
+              = f.select :marital_status_perfil, options_for_select(["Solteiro(a)", "Casado(a)", "União Estável (minimo 2 anos)", "Separado(a)", "Divorciado(a)", "Viúvo(a)"]), {:prompt => "Selecione"}, {:class => "required"}
           %tr
             %td Profissão:
             %td 
@@ -288,7 +294,7 @@
           %tr
             %td Estado civil:
             %td 
-              = f.select :marital_cond_1_status_perfil, options_for_select(["Solteiro(a)", "Casado", "União Estável (minimo 2 anos)", "Separado", "Divorciado", "Viúvo"]), :prompt => "Selecione"
+              = f.select :marital_cond_1_status_perfil, options_for_select(["Solteiro(a)", "Casado(a)", "União Estável (minimo 2 anos)", "Separado(a)", "Divorciado(a)", "Viúvo(a)"]), :prompt => "Selecione"
           %tr
             %td Grau de parentesco:
             %td 
@@ -314,7 +320,7 @@
           %tr
             %td Estado civil:
             %td 
-              = f.select :marital_cond_2_status_perfil, options_for_select(["Solteiro(a)", "Casado", "União Estável (minimo 2 anos)", "Separado", "Divorciado", "Viúvo"]), :prompt => "Selecione"
+              = f.select :marital_cond_2_status_perfil, options_for_select(["Solteiro(a)", "Casado(a)", "União Estável (minimo 2 anos)", "Separado(a)", "Divorciado(a)", "Viúvo(a)"]), :prompt => "Selecione"
           %tr
             %td Grau de parentesco:
             %td 
@@ -340,7 +346,7 @@
           %tr
             %td Estado civil:
             %td 
-              = f.select :marital_cond_3_status_perfil, options_for_select(["Solteiro(a)", "Casado", "União Estável (minimo 2 anos)", "Separado", "Divorciado", "Viúvo"]), :prompt => "Selecione"
+              = f.select :marital_cond_3_status_perfil, options_for_select(["Solteiro(a)", "Casado(a)", "União Estável (minimo 2 anos)", "Separado(a)", "Divorciado(a)", "Viúvo(a)"]), :prompt => "Selecione"
           %tr
             %td Grau de parentesco:
             %td 
