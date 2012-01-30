@@ -13,352 +13,360 @@
         %li - Vistoria no melhor local para o segurado.
         %li - Parcelamento do seguro em até 6x sem juros e até 12x com juros.
       .hr
+      - unless @message.blank?
+        #message
+          = @message
+          - @message = ""
       %p 
-        %strong Solicitação de cotação de seguro automóvel 
-      = form_tag :budget_auto, :url => budget_auto_path do
+        %strong Solicitação de cotação de seguro automóvel
+      = form_for :budget_auto, :url => budget_auto_path, :html => {:id => "budget_form"} do |f|
         %table
           %tr 
             %th DADOS DO CLIENTE
             %th
           %tr
-            %td Nome Completo*:
+            %td Nome completo*:
             %td 
-              = text_field_tag :name, "", :maxlength => 100, :size => 40
+              = f.text_field :name, :maxlength => 100, :size => 40, :class => "required"
           %tr
             %td CPF*:
             %td 
-              = text_field_tag :cpf, "", :maxlength => 14, :size => 40
+              = f.text_field :cpf, :maxlength => 14, :size => 40, :class => "required"
           %tr
             %td Data de nascimento*:
             %td 
-              = text_field_tag :birth, "", :maxlength => 10, :size => 40
+              = f.text_field :birth, :maxlength => 10, :size => 40, :class => "required"
           %tr
             %td Sexo*:
             %td 
-              = select_tag :sex, options_for_select(["Selecione", "Masculino", "Feminino"])
+              = f.select :sex, options_for_select(["Masculino", "Feminino"]), {:prompt => "Selecione"}, {:class => "required"}
           %tr
-            %td Estado Civil*:
+            %td Estado civil*:
             %td 
-              = select_tag :marital_status, options_for_select(["Selecione", "Solteiro(a)", "Casado", "União Estável (minimo 2 anos)", "Separado", "Divorciado", "Viúvo"])
+              = f.select :marital_status, options_for_select(["Solteiro(a)", "Casado", "União Estável (minimo 2 anos)", "Separado", "Divorciado", "Viúvo"]), {:prompt => "Selecione"}, {:class => "required"}
           %tr
             %td E-mail*:
             %td 
-              = email_field_tag :mail, "", :maxlength => 100, :size => 40
+              = f.email_field :mail, :maxlength => 100, :size => 40, :class => "required"
           %tr
             %td Telefone de contato*:
             %td 
-              = text_field_tag :phone, "", :maxlength => 14, :size => 40
+              = f.text_field :phone, :maxlength => 14, :size => 40, :class => "required"
           %tr 
             %th DADOS DO VEÍCULO
             %th
           %tr
             %td Marca*:
             %td 
-              = text_field_tag :maker, "", :maxlength => 100, :size => 40
+              = f.text_field :maker, :maxlength => 100, :size => 40, :class => "required"
           %tr
             %td Modelo*:
             %td 
-              = text_field_tag :model, "", :maxlength => 100, :size => 40
+              = f.text_field :model_type, :maxlength => 100, :size => 40, :class => "required"
           %tr
             %td Combustível*:
             %td 
-              = select_tag :fuel, options_for_select(["Selecione", "Álcool e Gasolina (Flex)", "Álcool", "Gasolina", "Diesel", "Gás Natural", "Outro"])
+              = f.select :fuel, options_for_select(["Álcool e Gasolina (Flex)", "Álcool", "Gasolina", "Diesel", "Gás Natural", "Outro"]), {:prompt => "Selecione"}, {:class => "required"}
           %tr
             %td Ano de fabricação*:
             %td 
-              = select_year(nil, :start_year => 2012, :end_year => 1982, :prompt => "Selecione", :field_name => "year_maker")
+              = select_year(nil, {:start_year => 2012, :end_year => 1982, :prompt => "Selecione"}, {:name => "budget_auto[year_maker]", :class => "required", :id => "year_maker"})
           %tr
             %td Ano de modelo*:
             %td 
-              = select_year(nil, :start_year => 2012, :end_year => 1982, :prompt => "Selecione", :field_name => "year_model")
+              = select_year(nil, {:start_year => 2012, :end_year => 1982, :prompt => "Selecione"}, {:name => "budget_auto[year_model]", :class => "required", :id => "year_model"})
               %br
-              = check_box_tag :zero
+              = f.check_box :zero
               %span{:style => "font-weight: normal"} Zero Km
           %tr
             %td CHASSI:
             %td 
-              = text_field_tag :chassi, "", :maxlength => 30, :size => 40
+              = f.text_field :chassi, :maxlength => 30, :size => 40
           %tr
             %td Placa:
             %td 
-              = text_field_tag :licence, "", :maxlength => 8, :size => 40
+              = f.text_field :licence, :maxlength => 8, :size => 40
           %tr
             %td Renavam:
             %td 
-              = text_field_tag :renavam, "", :maxlength => 30, :size => 40
+              = f.text_field :renavam, :maxlength => 30, :size => 40
           %tr
             %td CEP de circulação*:
             %td 
-              = text_field_tag :zip_code_1, "", :maxlength => 9, :size => 40
+              = f.text_field :zip_code_1, :maxlength => 9, :size => 40, :class => "required"
           %tr
             %td CEP de pernoite*:
             %td 
-              = text_field_tag :zip_code_2, "", :maxlength => 9, :size => 40
+              = f.text_field :zip_code_2, :maxlength => 9, :size => 40, :class => "required"
           %tr
             %td Proprietário do veículo*:
             %td 
-              = select_tag :owner, options_for_select(["Selecione", "Próprio", "Cônjuge", "Filhos", "Pais", "Outros"])
+              = f.select :owner, options_for_select(["Próprio", "Cônjuge", "Filhos", "Pais", "Outros"]), {:prompt => "Selecione"}, {:class => "required"}
           %tr
             %td Opcionais do veículo
             %td 
-              = check_box_tag :ar
+              = f.check_box :ar
               %span{:style => "font-weight: normal"} Ar-Condicionado
               %br
-              = check_box_tag :direcao
+              = f.check_box :direcao
               %span{:style => "font-weight: normal"} Direção Hidráulica
               %br
-              = check_box_tag :vidros
+              = f.check_box :vidros
               %span{:style => "font-weight: normal"} Vidros Elétricos
               %br
-              = check_box_tag :abs
+              = f.check_box :abs
               %span{:style => "font-weight: normal"} Freios ABS
               %br
-              = check_box_tag :alarm
+              = f.check_box :alarm
               %span{:style => "font-weight: normal"} Alarme
           %tr
-            %td Sistema Anti-Furto
+            %td Sistema anti-furto*
             %td 
-              = select_tag :antifurto, options_for_select(["Selecione", "Não possui", "Sistema original de fábrica", "Bloqueador rádio frequência", "Corta ignição", "Pager", "Rastreador", "Trava Mul-T-Lock", "Trava carneiro", "Outros"])
+              = f.select :antifurto, options_for_select(["Não possui", "Sistema original de fábrica", "Bloqueador rádio frequência", "Corta ignição", "Pager", "Rastreador", "Trava Mul-T-Lock", "Trava carneiro", "Outros"]), {:prompt => "Selecione"}, {:class => "required"}
           %tr
-            %td Veículo Alienado ou Financiado?
+            %td Veículo alienado ou financiado?*
             %td 
-              = radio_button_tag :alienado, false
+              = f.radio_button :alienado, true
               %span{:style => "font-weight: normal"} Sim
               %br              
-              = radio_button_tag :alienado, false
+              = f.radio_button :alienado, true
               %span{:style => "font-weight: normal"} Não
           %tr
             %td Renovação?
             %td             
-              = radio_button_tag :renovacao, false
+              = f.radio_button :renovacao, true
               %span{:style => "font-weight: normal"} Sim
               %br              
-              = radio_button_tag :renovacao, false
+              = f.radio_button :renovacao, true
               %span{:style => "font-weight: normal"} Não
           %tr
             %td Nome da seguradora:
             %td 
-              = text_field_tag :insurance, "", :maxlength => 100, :size => 40
+              = f.text_field :insurance, :maxlength => 100, :size => 40
+          %tr
+            %td Bônus atual:
+            %td 
+              = f.select :bonus, options_for_select(0..20), :prompt => "Selecione"
           %tr
             %td Utilizou o seguro este ano?
             %td               
-              = radio_button_tag :sinistro, false
+              = f.radio_button :sinistro, true
               %span{:style => "font-weight: normal"} Sim, por danos:
-              = select_tag :sinistro_danos, options_for_select(["Selecione", "ao própio veículo", "à terceiros"])
+              = f.select :sinistro_danos, options_for_select(["ao própio veículo", "à terceiros"]), :prompt => "Selecione"
               %br            
-              = radio_button_tag :sinistro, false
+              = f.radio_button :sinistro, true
               %span{:style => "font-weight: normal"} Não
           %tr
             %td Vencimento da apólice atual:
             %td 
-              = text_field_tag :maturity, "", :maxlength => 10, :size => 40
+              = f.text_field :maturity, :maxlength => 10, :size => 40
           %tr
-            %td O Segurado e/ou Condutor Principal tiveram veículos roubados nos últimos 3 anos?
+            %td O Segurado e/ou condutor principal tiveram veículos roubados nos últimos 3 anos?*
             %td             
-              = radio_button_tag :theft, false
+              = f.radio_button :theft, true
               %span{:style => "font-weight: normal"} Sim
               %br              
-              = radio_button_tag :theft, false
+              = f.radio_button :theft, true
               %span{:style => "font-weight: normal"} Não
           %tr 
             %th PERFIL DO SEGURADO
             %th 
               %span{:style => "font-weight: normal"} O perfil tem por objetivo identificar o risco do seguro, as respostas devem ser verdadeiras podendo em caso de inverdade acarretar a redução total ou parcial do valor a ser indenização.
           %tr
-            %td Relação do Condutor Principal (pessoa que utiliza o veículo 85% do tempo) com o Segurado?*
+            %td Relação do condutor principal (pessoa que utiliza o veículo 85% do tempo) com o segurado?*
             %td             
-              = radio_button_tag :relacao_cond_seg, false
+              = f.radio_button :relacao_cond_seg, "Próprio"
               %span{:style => "font-weight: normal"} Próprio
               %br
-              = radio_button_tag :relacao_cond_seg, false
+              = f.radio_button :relacao_cond_seg, "Cônjuge"
               %span{:style => "font-weight: normal"} Cônjuge
               %br
-              = radio_button_tag :relacao_cond_seg, false
+              = f.radio_button :relacao_cond_seg, "Filho"
               %span{:style => "font-weight: normal"} Filho
               %br
-              = radio_button_tag :relacao_cond_seg, false
+              = f.radio_button :relacao_cond_seg, "Outro"
               %span{:style => "font-weight: normal"} Outro
-              = text_field_tag :relacao_cond_seg_outro, "", :maxlength => 20, :size => 20
+              = f.text_field :relacao_cond_seg_outro, :maxlength => 20, :size => 20
           %tr
             %td Nome*:
             %td 
-              = text_field_tag :name_perfil, "", :maxlength => 100, :size => 40
+              = f.text_field :name_perfil, :maxlength => 100, :size => 40, :class => "required"
           %tr
             %td CPF*:
             %td 
-              = text_field_tag :cpf_perfil, "", :maxlength => 14, :size => 40
+              = f.text_field :cpf_perfil, :maxlength => 14, :size => 40, :class => "required"
           %tr
             %td Data de nascimento*:
             %td 
-              = text_field_tag :birth_perfil, "", :maxlength => 10, :size => 40
+              = f.text_field :birth_perfil, :maxlength => 10, :size => 40, :class => "required"
           %tr
             %td Sexo*:
             %td 
-              = select_tag :sex_perfil, options_for_select(["Selecione", "Masculino", "Feminino"])
+              = f.select :sex_perfil, options_for_select(["Masculino", "Feminino"]), {:prompt => "Selecione"}, {:class => "required"}
           %tr
-            %td Estado Civil*:
+            %td Estado civil*:
             %td 
-              = select_tag :marital_status_perfil, options_for_select(["Selecione", "Solteiro(a)", "Casado", "União Estável (minimo 2 anos)", "Separado", "Divorciado", "Viúvo"])
+              = f.select :marital_status_perfil, options_for_select(["Solteiro(a)", "Casado", "União Estável (minimo 2 anos)", "Separado", "Divorciado", "Viúvo"]), {:prompt => "Selecione"}, {:class => "required"}
           %tr
             %td Profissão:
             %td 
-              = text_field_tag :job_perfil, "", :maxlength => 100, :size => 40
+              = f.text_field :job_perfil, :maxlength => 100, :size => 40
           %tr
             %td Data da 1ª habilitação:
             %td 
-              = text_field_tag :cnh_maturity_perfil, "", :maxlength => 10, :size => 40
+              = f.text_field :cnh_first_perfil, :maxlength => 10, :size => 40
           %tr
             %td Escolaridade:
             %td 
-              = select_tag :school_perfil, options_for_select(["Selecione", "Fundamental", "Médio", "Superior"])
+              = f.select :school_perfil, options_for_select(["Fundamental", "Médio", "Superior"]), :prompt => "Selecione"
           %tr
             %td Estuda atualmente?
             %td 
-              = select_tag :residence_type_perfil, options_for_select(["Selecione", "Sim", "Não"])
+              = f.select :study_perfil, options_for_select(["Sim", "Não"]), :prompt => "Selecione"
           %tr
             %td Qual o tipo de residência?
             %td 
-              = select_tag :residence_type_perfil, options_for_select(["Selecione", "Apartamento", "Casa"])
+              = f.select :residence_type_perfil, options_for_select(["Apartamento", "Casa"]), :prompt => "Selecione"
           %tr
             %td Residência própria ou alugada?
             %td 
-              = select_tag :residence_status_perfil, options_for_select(["Selecione", "Própria", "Alugada"])
+              = f.select :residence_status_perfil, options_for_select(["Própria", "Alugada"]), :prompt => "Selecione"
           %tr
-            %td Residência em condómínio fechado?
+            %td Residência em condomínio fechado?
             %td 
-              = select_tag :residence_closed_perfil, options_for_select(["Selecione", "Sim", "Não"])
+              = f.select :residence_closed_perfil, options_for_select(["Sim", "Não"]), :prompt => "Selecione"
           %tr
             %td Garagem fechada?
             %td 
-              = check_box_tag :garage_residence_perfil
+              = f.check_box :garage_residence_perfil
               %span{:style => "font-weight: normal"} Na residência
               %br
-              = check_box_tag :garage_job_perfil
+              = f.check_box :garage_job_perfil
               %span{:style => "font-weight: normal"} No trabalho
               %br
-              = check_box_tag :garage_school_perfil
+              = f.check_box :garage_school_perfil
               %span{:style => "font-weight: normal"} Na escola
               %br
-              = check_box_tag :garage_not_job_perfil
+              = f.check_box :garage_not_job_perfil
               %span{:style => "font-weight: normal"} Não trabalha ou não utiliza para ir ao trabalho
               %br
-              = check_box_tag :garage_not_school_perfil
+              = f.check_box :garage_not_school_perfil
               %span{:style => "font-weight: normal"} Não estuda ou não utiliza para ir a escola/faculdade
               %br
-              = check_box_tag :garage_not_perfil
+              = f.check_box :garage_not_perfil
               %span{:style => "font-weight: normal"} Não possui garagem
           %tr
-            %td Quantidade de Veículos:
+            %td Quantidade de veículos:
             %td 
-              = text_field_tag :vehicle_ammount_perfil, "", :maxlength => 2, :size => 40
+              = f.text_field :vehicle_ammount_perfil, :maxlength => 2, :size => 40
           %tr
-            %td Quilometragem Diária:
+            %td Quilometragem diária:
             %td 
-              = text_field_tag :km_day_perfil, "", :maxlength => 4, :size => 40
+              = f.text_field :km_day_perfil, :maxlength => 4, :size => 40
           %tr
             %th OUTROS CONDUTORES 
             %th 
-              %span{:style => "font-weight: normal"} Residentes com idade entre 18 e 26 anos.
+              %span{:style => "font-weight: normal"} Residentes com mais de 18 anos.
           %tr
             %th{:colspan => 2} 1º condutor
           %tr
             %td Nome:
             %td 
-              = text_field_tag :name_cond_1_perfil, "", :maxlength => 100, :size => 40
+              = f.text_field :name_cond_1_perfil, :maxlength => 100, :size => 40
           %tr
             %td Data de nascimento:
             %td 
-              = text_field_tag :birth_cond_1_perfil, "", :maxlength => 10, :size => 40
+              = f.text_field :birth_cond_1_perfil, :maxlength => 10, :size => 40
           %tr
             %td Sexo:
             %td 
-              = select_tag :sex_cond_1_perfil, options_for_select(["Selecione", "Masculino", "Feminino"])
+              = f.select :sex_cond_1_perfil, options_for_select(["Masculino", "Feminino"]), :prompt => "Selecione"
           %tr
             %td Data da 1ª habilitação:
             %td 
-              = text_field_tag :cnh_maturity_cond_1_perfil, "", :maxlength => 10, :size => 40
+              = f.text_field :cnh_first_cond_1_perfil, :maxlength => 10, :size => 40
           %tr
-            %td Estado Civil:
+            %td Estado civil:
             %td 
-              = select_tag :marital_cond_1_status_perfil, options_for_select(["Selecione", "Solteiro(a)", "Casado", "União Estável (minimo 2 anos)", "Separado", "Divorciado", "Viúvo"])
+              = f.select :marital_cond_1_status_perfil, options_for_select(["Solteiro(a)", "Casado", "União Estável (minimo 2 anos)", "Separado", "Divorciado", "Viúvo"]), :prompt => "Selecione"
           %tr
             %td Grau de parentesco:
             %td 
-              = text_field_tag :relation_cond_1_perfil, "", :maxlength => 100, :size => 40
+              = f.text_field :relation_cond_1_perfil, :maxlength => 100, :size => 40
           %tr
             %th{:colspan => 2} 2º condutor
           %tr
             %td Nome:
             %td 
-              = text_field_tag :name_cond_2_perfil, "", :maxlength => 100, :size => 40
+              = f.text_field :name_cond_2_perfil, :maxlength => 100, :size => 40
           %tr
             %td Data de nascimento:
             %td 
-              = text_field_tag :birth_cond_2_perfil, "", :maxlength => 10, :size => 40
+              = f.text_field :birth_cond_2_perfil, :maxlength => 10, :size => 40
           %tr
             %td Sexo:
             %td 
-              = select_tag :sex_cond_2_perfil, options_for_select(["Selecione", "Masculino", "Feminino"])
+              = f.select :sex_cond_2_perfil, options_for_select(["Masculino", "Feminino"]), :prompt => "Selecione"
           %tr
             %td Data da 1ª habilitação:
             %td 
-              = text_field_tag :cnh_maturity_cond_2_perfil, "", :maxlength => 10, :size => 40
+              = f.text_field :cnh_first_cond_2_perfil, :maxlength => 10, :size => 40
           %tr
-            %td Estado Civil:
+            %td Estado civil:
             %td 
-              = select_tag :marital_cond_2_status_perfil, options_for_select(["Selecione", "Solteiro(a)", "Casado", "União Estável (minimo 2 anos)", "Separado", "Divorciado", "Viúvo"])
+              = f.select :marital_cond_2_status_perfil, options_for_select(["Solteiro(a)", "Casado", "União Estável (minimo 2 anos)", "Separado", "Divorciado", "Viúvo"]), :prompt => "Selecione"
           %tr
             %td Grau de parentesco:
             %td 
-              = text_field_tag :relation_cond_2_perfil, "", :maxlength => 100, :size => 40
+              = f.text_field :relation_cond_2_perfil, :maxlength => 100, :size => 40
           %tr
             %th{:colspan => 2} 3º condutor
           %tr
             %td Nome:
             %td 
-              = text_field_tag :name_cond_3_perfil, "", :maxlength => 100, :size => 40
+              = f.text_field :name_cond_3_perfil, :maxlength => 100, :size => 40
           %tr
             %td Data de nascimento:
             %td 
-              = text_field_tag :birth_cond_3_perfil, "", :maxlength => 10, :size => 40
+              = f.text_field :birth_cond_3_perfil, :maxlength => 10, :size => 40
           %tr
             %td Sexo:
             %td 
-              = select_tag :sex_cond_3_perfil, options_for_select(["Selecione", "Masculino", "Feminino"])
+              = f.select :sex_cond_3_perfil, options_for_select(["Masculino", "Feminino"]), :prompt => "Selecione"
           %tr
             %td Data da 1ª habilitação:
             %td 
-              = text_field_tag :cnh_maturity_cond_3_perfil, "", :maxlength => 10, :size => 40
+              = f.text_field :cnh_first_cond_3_perfil, :maxlength => 10, :size => 40
           %tr
-            %td Estado Civil:
+            %td Estado civil:
             %td 
-              = select_tag :marital_cond_3_status_perfil, options_for_select(["Selecione", "Solteiro(a)", "Casado", "União Estável (minimo 2 anos)", "Separado", "Divorciado", "Viúvo"])
+              = f.select :marital_cond_3_status_perfil, options_for_select(["Solteiro(a)", "Casado", "União Estável (minimo 2 anos)", "Separado", "Divorciado", "Viúvo"]), :prompt => "Selecione"
           %tr
             %td Grau de parentesco:
             %td 
-              = text_field_tag :relation_cond_3_perfil, "", :maxlength => 100, :size => 40
+              = f.text_field :relation_cond_3_perfil, :maxlength => 100, :size => 40
           %tr
             %th OUTRAS INFORMAÇÕES
             %th
           %tr
             %td Prefere ser contatado de que forma?
             %td             
-              = radio_button_tag :contact_email, false
+              = f.radio_button :contact, "E-mail"
               %span{:style => "font-weight: normal"} E-mail
               %br
-              = radio_button_tag :contact_phone, false
+              = f.radio_button :contact, "Telefone"
               %span{:style => "font-weight: normal"} Telefone
               %br
-              = radio_button_tag :contact_personal, false
+              = f.radio_button :contact, "Pessoalmente"
               %span{:style => "font-weight: normal"} Pessoalmente
           %tr
             %td Comentários adicionais:
             %td 
-              = text_area_tag :obs, nil, :cols => 50, :rows => 10, :maxlength => 500, :style => "resize: none"
+              = f.text_area :obs, :cols => 50, :rows => 10, :maxlength => 500, :style => "resize: none"
           %tr
             %td
             %td 
-              = submit_tag "Enviar"
+              = f.submit "Enviar"
       %br
   .col-right
     #column-right
@@ -395,3 +403,15 @@
             %a{:href => "#"} - O que é CASCO?
           %li 
             %a{:href => "#"} - Outras perguntas...
+:javascript
+  $(document).ready(function(){
+    $('.cotacao').css("background-color", "#098FAF");
+    
+    $("#budget_form").validate();
+
+    $("#budget_form").keypress(function(e) {
+      if (e.which == 13) {
+        return false;
+      }
+    });
+  });

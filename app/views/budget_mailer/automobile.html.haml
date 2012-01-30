@@ -1,0 +1,243 @@
+#budget-mailer
+  %p
+    Olá, o cliente #{@budget_auto[:name]} esta solicitando uma cotação de seguro para seu automóvel, segue os dados informados para cotação abaixo:
+  %br
+  %table{:border => 1, :width => 800, :cellspacing => 0, :cellpadding => 0}
+    %tr
+      %th{:colspan => 6} DADOS DO CLIENTE
+    %tr
+      %td{:width => 100} Nome completo
+      %td{:width => 200} 
+        =@budget_auto[:name]
+      %td{:width => 100} CPF
+      %td{:width => 200} 
+        =@budget_auto[:cpf]
+      %td{:width => 100} Data de nascimento
+      %td{:width => 200} 
+        =@budget_auto[:birth]
+    %tr
+      %td Sexo
+      %td 
+        =@budget_auto[:sex]
+      %td Estado civil
+      %td
+        =@budget_auto[:marital_status]
+      %td E-mail
+      %td
+        =@budget_auto[:mail]
+    %tr
+      %td Telefone de contato
+      %td{:colspan => 5}
+        =@budget_auto[:phone]
+    %tr
+      %th{:colspan => 6} DADOS DO VEÍCULO
+    %tr
+      %td Marca
+      %td 
+        =@budget_auto[:maker]
+      %td Modelo
+      %td
+        =@budget_auto[:model_type]
+      %td Combustível
+      %td
+        =@budget_auto[:fuel]
+    %tr
+      %td Ano de fabricação
+      %td 
+        =@budget_auto[:year_maker]
+      %td Ano de modelo
+      %td
+        = @budget_auto[:year_model]
+        #{(@budget_auto[:zero] == "0" ? nil : " (Zero KM)")}
+      %td CHASSI
+      %td
+        =@budget_auto[:chassi]
+    %tr
+      %td Placa
+      %td 
+        =@budget_auto[:licence]
+      %td Renavam
+      %td
+        =@budget_auto[:renavam]
+      %td Cep de circulação
+      %td
+        =@budget_auto[:zip_code_1]
+    %tr
+      %td Cep de pernoite
+      %td 
+        =@budget_auto[:zip_code_2]
+      %td Proprietário do veículo
+      %td
+        =@budget_auto[:owner]
+      %td Opcionais do veículo
+      %td
+        = (@budget_auto[:ar] == "0" ? nil : "Ar condicionado")
+        #{(@budget_auto[:direcao] == "0" ? nil : ", Direção")}
+        #{(@budget_auto[:vidros] == "0" ? nil : ", Vidros")}
+        #{(@budget_auto[:abs] == "0" ? nil : ", ABS")}
+        #{(@budget_auto[:alarm] == "0" ? nil : ", Alarme")}
+    %tr
+      %td Sistema anti-furto
+      %td 
+        = @budget_auto[:antifurto]
+      %td Veículo alienado ou financiado?
+      %td
+        = (@budget_auto[:alienado] == "true" ? "Sim" : "Não")
+      %td Renovação?
+      %td
+        = (@budget_auto[:renovacao] == "true" ? "Sim" : "Não")
+    %tr
+      %td Nome da seguradora
+      %td 
+        = @budget_auto[:insurance]
+      %td Bônus
+      %td 
+        = @budget_auto[:bonus]
+      %td Utilizou o seguro este ano?
+      %td
+        = (@budget_auto[:sinistro] == "true" ? "Sim, por danos #{@budget_auto[:sinistro_danos]}" : nil)
+    %tr
+      %td Vencimento da apólice atual
+      %td{:colspan => 2}
+        = @budget_auto[:maturity]
+      %td O Segurado e/ou condutor principal tiveram veículos roubados nos últimos 3 anos?
+      %td{:colspan => 2}
+        = (@budget_auto[:theft] == "true" ? "Sim" : nil)
+    %tr
+      %th{:colspan => 6} PERFIL DO SEGURADO
+    %tr
+      %td Relação do condutor principal (pessoa que utiliza o veículo 85% do tempo) com o segurado?
+      %td 
+        = (@budget_auto[:relacao_cond_seg] == "Outro" ? @budget_auto[:relacao_cond_seg] + "(#{@budget_auto[:relacao_cond_seg_outro]})" : @budget_auto[:relacao_cond_seg])
+      %td Nome
+      %td
+        = @budget_auto[:name_perfil]
+      %td CPF
+      %td
+        = @budget_auto[:cpf_perfil]
+    %tr
+      %td Data de nascimento
+      %td 
+        = @budget_auto[:birth_perfil]
+      %td Sexo
+      %td
+        = @budget_auto[:sex_perfil]
+      %td Estado civil
+      %td
+        = @budget_auto[:marital_status_perfil]
+    %tr
+      %td Profissão
+      %td 
+        = @budget_auto[:job_perfil]
+      %td Data da 1ª habilitação
+      %td
+        = @budget_auto[:cnh_first_perfil]
+      %td Escolaridade
+      %td
+        = @budget_auto[:school_perfil]
+    %tr
+      %td Estuda atualmente?
+      %td 
+        = @budget_auto[:study_perfil]
+      %td Qual o tipo de residência?
+      %td
+        = @budget_auto[:residence_type_perfil]
+      %td Residência própria ou alugada?
+      %td
+        = @budget_auto[:residence_status_perfil]
+    %tr
+      %td Residência em condómínio fechado?
+      %td 
+        = @budget_auto[:residence_closed_perfil]
+      %td Garagem fechada?
+      %td
+        = (@budget_auto[:garage_residence_perfil] == "0" ? nil : "Na residência")
+        #{(@budget_auto[:garage_job_perfil] == "0" ? nil : "No trabalho")} 
+        #{(@budget_auto[:garage_school_perfil] == "0" ? nil : "Na escola")} 
+        #{(@budget_auto[:garage_not_job_perfil] == "0" ? nil : "Não trabalha ou não utiliza para ir ao trabalho")} 
+        #{(@budget_auto[:garage_not_school_perfil] == "0" ? nil : "Não estuda ou não utiliza para ir a escola/faculdade")} 
+        #{(@budget_auto[:garage_not_perfil] == "0" ? nil : "Não possui garagem")} 
+      %td Quantidade de veículos
+      %td
+        = @budget_auto[:vehicle_ammount_perfil]
+    %tr
+      %td Quilometragem diária
+      %td{:colspan => 5}
+        = @budget_auto[:km_day_perfil]
+    %tr
+      %th{:colspan => 6} OUTROS CONDUTORES
+    %tr
+      %td{:colspan => 6} 1º condutor
+    %tr
+      %td Nome
+      %td 
+        = @budget_auto[:name_cond_1_perfil]
+      %td Data de nascimento
+      %td
+        = @budget_auto[:birth_cond_1_perfil]
+      %td Sexo
+      %td
+        = @budget_auto[:sex_cond_1_perfil]
+    %tr
+      %td Data da 1ª habilitação
+      %td 
+        = @budget_auto[:cnh_first_cond_1_perfil]
+      %td Estado civil
+      %td
+        = @budget_auto[:marital_cond_1_status_perfil]
+      %td Grau de parentesco
+      %td
+        = @budget_auto[:relation_cond_1_perfil]
+    %tr
+      %td{:colspan => 6} 2º condutor
+    %tr
+      %td Nome
+      %td 
+        = @budget_auto[:name_cond_2_perfil]
+      %td Data de nascimento
+      %td
+        = @budget_auto[:birth_cond_2_perfil]
+      %td Sexo
+      %td
+        = @budget_auto[:sex_cond_2_perfil]
+    %tr
+      %td Data da 1ª habilitação
+      %td 
+        = @budget_auto[:cnh_first_cond_2_perfil]
+      %td Estado civil
+      %td
+        = @budget_auto[:marital_cond_2_status_perfil]
+      %td Grau de parentesco
+      %td
+        = @budget_auto[:relation_cond_2_perfil]
+    %tr
+      %td{:colspan => 6} 3º condutor
+    %tr
+      %td Nome
+      %td 
+        = @budget_auto[:name_cond_3_perfil]
+      %td Data de nascimento
+      %td
+        = @budget_auto[:birth_cond_3_perfil]
+      %td Sexo
+      %td
+        = @budget_auto[:sex_cond_3_perfil]
+    %tr
+      %td Data da 1ª habilitação
+      %td 
+        = @budget_auto[:cnh_first_cond_3_perfil]
+      %td Estado civil
+      %td
+        = @budget_auto[:marital_cond_3_status_perfil]
+      %td Grau de parentesco
+      %td
+        = @budget_auto[:relation_cond_3_perfil]
+    %tr
+      %th{:colspan => 6} OUTRAS INFORMAÇÕES
+    %tr
+      %td Prefere ser contatado de que forma?
+      %td{:colspan => 2}
+        = @budget_auto[:contact]
+      %td Comentários adicionais
+      %td{:colspan => 2}
+        = @budget_auto[:obs]

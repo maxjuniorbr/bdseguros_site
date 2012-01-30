@@ -17,7 +17,7 @@
         .wrapper
           %ul
             %li 
-              %a{:href => "/"} Home
+              %a{:href => "/", :class => "home"} Home
             %li 
               %a{:href => "#"} Quem somos
             %li 
@@ -27,13 +27,13 @@
             %li 
               %a{:href => "#"} Seguradoras            
             %li 
-              %a{:href => "/cotacao"} Cotação
+              %a{:href => "/cotacao", :class => "cotacao"} Cotação
             %li 
               %a{:href => "#"} Glossário
             %li 
               %a{:href => "#"} Contato
-      #slider_wrapper
-        #slider_box
+      #slider-wrapper
+        #slider-box
           #sliders
             %div
               %a{:href => "/seguro-automovel"}
@@ -47,7 +47,7 @@
     = yield
     #footer
       .wrapper
-        %ul#footer_menu
+        %ul#footer-menu
           %li
             %h4 Seguros
             %ul
