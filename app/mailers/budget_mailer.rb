@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class BudgetMailer < ActionMailer::Base
   default :from => "cotacao@bdseguros.com.br"
 
