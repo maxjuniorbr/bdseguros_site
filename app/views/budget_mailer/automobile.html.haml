@@ -95,14 +95,14 @@
         = @budget_auto[:bonus]
       %td Utilizou o seguro este ano?
       %td
-        = (@budget_auto[:sinistro] == "true" ? "Sim, por danos #{@budget_auto[:sinistro_danos]}" : nil)
+        = (@budget_auto[:sinistro] == "true" ? "Sim, por danos #{@budget_auto[:sinistro_danos]}" : "Não")
     %tr
       %td Vencimento da apólice atual
       %td{:colspan => 2}
         = @budget_auto[:maturity]
       %td O Segurado e/ou condutor principal tiveram veículos roubados nos últimos 3 anos?
       %td{:colspan => 2}
-        = (@budget_auto[:theft] == "true" ? "Sim" : nil)
+        = (@budget_auto[:theft] == "true" ? "Sim" : "Não")
     %tr
       %th{:colspan => 6} PERFIL DO SEGURADO
     %tr
