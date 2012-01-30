@@ -129,7 +129,7 @@
               = f.radio_button :alienado, true
               %span{:style => "font-weight: normal"} Sim
               %br              
-              = f.radio_button :alienado, true
+              = f.radio_button :alienado, false
               %span{:style => "font-weight: normal"} Não
           %tr
             %td Renovação?
@@ -137,7 +137,7 @@
               = f.radio_button :renovacao, true
               %span{:style => "font-weight: normal"} Sim
               %br              
-              = f.radio_button :renovacao, true
+              = f.radio_button :renovacao, false
               %span{:style => "font-weight: normal"} Não
           %tr
             %td Nome da seguradora:
@@ -154,7 +154,7 @@
               %span{:style => "font-weight: normal"} Sim, por danos:
               = f.select :sinistro_danos, options_for_select(["ao própio veículo", "à terceiros"]), :prompt => "Selecione"
               %br            
-              = f.radio_button :sinistro, true
+              = f.radio_button :sinistro, false
               %span{:style => "font-weight: normal"} Não
           %tr
             %td Vencimento da apólice atual:
@@ -166,7 +166,7 @@
               = f.radio_button :theft, true
               %span{:style => "font-weight: normal"} Sim
               %br              
-              = f.radio_button :theft, true
+              = f.radio_button :theft, false
               %span{:style => "font-weight: normal"} Não
           %tr 
             %th PERFIL DO SEGURADO
