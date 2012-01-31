@@ -2,7 +2,7 @@ Bdsite::Application.routes.draw do
   root :to => 'home#index'
   
   match 'cotacao' => 'home#budget', :as => 'budget'
-  match 'seguro-automovel' => 'home#budget_auto', :as => 'budget_auto'
+  match 'cotacao/automovel' => 'home#budget_auto', :as => 'budget_auto'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

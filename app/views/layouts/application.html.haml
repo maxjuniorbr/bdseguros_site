@@ -10,9 +10,9 @@
       #header
         .wrapper
           %a#logo{:href => "http://bdseguros.com.br/"}
-            %img{:alt => "BDSeguros", :border => "0", :src => "assets/logo.png", :title => "BDSeguros"}
+            %img{:alt => "BDSeguros", :border => "0", :src => "../assets/logo.png", :title => "BDSeguros"}
           .header_menu
-            %img{:alt => "Telefone", :border => "0", :src => "assets/phone.png", :title => "Telefone (44) 3233-2184 ou (44) 3232-1896"}
+            %img{:alt => "Telefone", :border => "0", :src => "../assets/phone.png", :title => "Telefone (44) 3233-2184 ou (44) 3232-1896"}
       .menu
         .wrapper
           %ul
@@ -36,14 +36,11 @@
         #slider-box
           #sliders
             %div
-              %a{:href => "/seguro-automovel"}
-                %img{:alt => "Seguro Automóvel", :border => "0", :src => "assets/slide_auto.png", :title => "Seguro Automóvel"}
+              =link_to image_tag("../assets/slide_auto.png", {:alt => "Seguro Automóvel", :border => "0", :title => "Seguro Automóvel"}), budget_auto_path
             %div
-              %a{:href => "#"}
-                %img{:alt => "Seguro Residência", :border => "0", :src => "assets/slide_casa.png", :title => "Seguro Residência"}
+              =link_to image_tag("../assets/slide_casa.png", {:alt => "Seguro Residência", :border => "0", :title => "Seguro Residência"}), "#"
             %div
-              %a{:href => "#"}
-                %img{:alt => "Seguro Empresa", :border => "0", :src => "assets/slide_emp.png", :title => "Seguro Empresa"}
+              =link_to image_tag("../assets/slide_emp.png", {:alt => "Seguro Empresa", :border => "0", :title => "Seguro Empresa"}), "#"
     = yield
     #footer
       .wrapper
@@ -71,7 +68,7 @@
               %li
                 %a{:href => "#"} Quem somos
               %li
-                %a{:href => "/cotacao"} Cotação
+                =link_to "Cotação", budget_path
               %li
                 %a{:href => "#"} Glossário
           %li

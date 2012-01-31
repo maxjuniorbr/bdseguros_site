@@ -10,25 +10,20 @@
           %h4 Escolha um produto abaixo e solicite uma cotação:
           %ul
             %li.img-choice4
-              %a{:href => "/seguro-automovel"}
-                %img{:alt => "Automóvel", :border => "0", :src => "../assets/cot_auto.png", :title => "Automóvel"}
+              =link_to image_tag("../assets/cot_auto.png", {:alt => "Automóvel", :border => "0", :title => "Automóvel"}), budget_auto_path
             %li.img-choice4
-              %a{:href => "#"}
-                %img{:alt => "Vida Individual", :border => "0", :src => "../assets/cot_vida.png", :title => "Vida Individual"}
+              =link_to image_tag("../assets/cot_vida.png", {:alt => "Vida Individual", :border => "0", :title => "Vida Individual"}), "#"
             %li.img-choice4
-              %a{:href => "#"}
-                %img{:alt => "Equipamentos Portáteis", :border => "0", :src => "../assets/cot_port.png", :title => "Equipamentos Portáteis"}
+              =link_to image_tag("../assets/cot_port.png", {:alt => "Equipamentos Portáteis", :border => "0", :title => "Equipamentos Portáteis"}), "#"
             %li.img-choice4
-              %a{:href => "#"}
-                %img{:alt => "Outros Ramos", :border => "0", :src => "../assets/cot_outros.png", :title => "Outros Ramos"}
-
+              =link_to image_tag("../assets/cot_outros.png", {:alt => "Outros Ramos", :border => "0", :title => "Outros Ramos"}), "#"
   .col-right
     #column-right
       #content-right
         %h4#budget Cotação
         %ul
           %li 
-            %a{:href => "/seguro-automovel"} - Automóvel
+            =link_to "- Automóvel", budget_auto_path
           %li 
             %a{:href => "#"} - Vida Individual
           %li 
