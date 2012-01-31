@@ -59,7 +59,7 @@
       %td{:bgcolor => "#F1F1F1"} Renavam:
       %td
         =@budget_auto[:renavam]
-        #{" - " + @budget_auto[:renavam_state]}
+        #{(" - " + @budget_auto[:renavam_state]) unless @budget_auto[:renavam].blank?}
       %td{:bgcolor => "#F1F1F1"} Cep de circulação:
       %td
         =@budget_auto[:zip_code_1]
