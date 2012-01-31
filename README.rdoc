@@ -1,2 +1,6 @@
 Website of a insurance broker
-- Requirement: Create file db / database.yml
+- Requirement: Create files: 
+- db / database.yml
+- config / initializers / secret_token.rb
+- config / initializers / session_store.rb
+- config / initializers / setup_mail.rb
