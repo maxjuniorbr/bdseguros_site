@@ -1,0 +1,216 @@
+#home
+  .col-left
+    #main
+      - case params[:type] 
+        - when "vida"
+          %h2         
+            Vida Individual
+            %img.alignright{:alt => "Vida Individual", :border => "0", :src => "../assets/cot_vida_g.png", :title => "Vida Individual"}
+          %p Um bom seguro de vida é aquele que se preocupa com você também no presente. Ao contratar este produto você garante a sua tranquilidade e a proteção de quem mais ama, agora e no futuro.
+          %p
+            %strong Principais coberturas disponíveis para contratação:
+          %ul
+            %li - Morte natural.
+            %li - Morte acidental.
+            %li - Invalidez permanentemente total ou parcial por acidente.
+            %li - Invalidez permanentemente total por doença.
+            %li - Despesas médico-hospitalares por acidente.
+            %li - Doenças graves.
+            %li - Assistência funeral.
+            %li - Cláusula Profissional.
+        - when "condominio"
+          %h2         
+            Condomínio
+            %img.alignright{:alt => "Condomínio", :border => "0", :src => "../assets/cot_condominio_g.png", :title => "Condomínio"}
+          %p Sob medida para condomínios verticais residenciais, comerciais, mistos, de escritórios e/ou consultórios, flats e apart-hotéis, bem como condomínios residenciais horizontais. Com preço acessível e pagamento facilitado, ele oferece inúmeras vantagens.
+          %p
+            %strong Principais coberturas e serviços disponíveis para contratação:
+          %ul
+            %li - Incêndio, queda de raio e explosão.
+            %li - Danos materiais de causa extrema.
+            %li - Responsabilidade civil do condomínio.
+            %li - Quebra de vidros.
+            %li - Danos elétricos.
+            %li - Responsabilidade civil garagista.
+            %li - Desmoronamento.
+            %li - Alagamento e inundação.
+            %li - Incêndio e roubo de bens do condomínio.
+            %li - Assistência 24 horas.
+        - else
+          %h2         
+            Outros Ramos
+            %img.alignright{:alt => "Equipamentos Portáteis", :border => "0", :src => "../assets/cot_outros_g.png", :title => "Equipamentos Portáteis"}
+          %p Oferecemos soluções focando sempre o melhor benefício para o nosso cliente, trabalhando com todas as modalidades de seguro como automóvel, moto, fiança, residêncial, equipamentos portáteis, vida, saúde, empresarial, transporte, condomínio, risco de engenharia e garantias contratuais.
+          %p 
+            %strong Contate-nos para uma consuloria.
+      .hr
+      - unless @message.blank?
+        #message
+          = @message
+          - @message = ""
+      %p 
+        %strong Solicitação de cotação de seguro de outros ramos
+      = form_for :budget_other, :url => budget_other_path, :html => {:id => "budget_form"} do |f|
+        %table
+          %tr 
+            %th DADOS DO CLIENTE
+            %th
+          %tr
+            %td Nome completo*:
+            %td 
+              = f.text_field :name, :maxlength => 100, :size => 40, :class => "required"
+          %tr
+            %td CPF*:
+            %td 
+              = f.text_field :cpf, :maxlength => 14, :size => 40, :class => "required"
+          %tr
+            %td Data de nascimento*:
+            %td 
+              = f.text_field :birth, :maxlength => 10, :size => 40, :class => "required"
+          %tr
+            %td Sexo*:
+            %td 
+              = f.select :sex, options_for_select(["Masculino", "Feminino"]), {:prompt => "Selecione"}, {:class => "required"}
+          %tr
+            %td Estado civil*:
+            %td 
+              = f.select :marital_status, options_for_select(["Solteiro(a)", "Casado", "União Estável (minimo 2 anos)", "Separado", "Divorciado", "Viúvo"]), {:prompt => "Selecione"}, {:class => "required"}
+          %tr
+            %td E-mail*:
+            %td 
+              = f.email_field :mail, :maxlength => 100, :size => 40, :class => "required"
+          %tr
+            %td Telefone de contato*:
+            %td 
+              = f.text_field :phone, :maxlength => 14, :size => 40, :class => "required"
+          %tr
+            %td Endereço*:
+            %td 
+              = f.text_field :adress, :maxlength => 100, :size => 40, :class => "required"
+          %tr
+            %td Cidade*:
+            %td 
+              = f.text_field :city, :maxlength => 100, :size => 40, :class => "required"
+          %tr
+            %td UF*:
+            %td 
+              = f.select :uf, options_for_select(["AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MG", "MS", "MT", "PA", "PB", "PE", "PI", "PR", "RJ", "RN", "RO", "RR", "RS", "SC", "SE", "SP", "TO"]), {:prompt => "Selecione"}, {:class => "required"}
+          %tr
+            %td CEP*:
+            %td 
+              = f.text_field :zip_code_1, :maxlength => 9, :size => 40, :class => "required"
+          %tr 
+            %th PRODUTOS QUE DESEJA RECEBER INFORMAÇÕES
+            %th
+          %tr
+            %td Para você:
+            %td 
+              = f.check_box :af
+              %span{:style => "font-weight: normal"} Assistência Funeral
+              %br
+              = f.check_box :ap
+              %span{:style => "font-weight: normal"} Acidentes Pessoais
+              %br
+              = f.check_box :residencia
+              %span{:style => "font-weight: normal"} Residência
+              %br
+              = f.check_box :saude_v
+              %span{:style => "font-weight: normal"} Saúde
+              %br
+              = f.check_box :vida, {:checked => params[:type] == "vida" ? true : false}
+              %span{:style => "font-weight: normal"} Vida          
+          %tr
+            %td Para empresa:
+            %td               
+              = f.check_box :condominio, {:checked => params[:type] == "condominio" ? true : false}
+              %span{:style => "font-weight: normal"} Condomínio
+              %br
+              = f.check_box :empresa
+              %span{:style => "font-weight: normal"} Empresa
+              %br
+              = f.check_box :frota
+              %span{:style => "font-weight: normal"} Frota
+              %br
+              = f.check_box :rc
+              %span{:style => "font-weight: normal"} Responsabilidade Civil
+              %br
+              = f.check_box :re
+              %span{:style => "font-weight: normal"} Risco de Engenharia
+              %br
+              = f.check_box :saude_e
+              %span{:style => "font-weight: normal"} Saúde
+              %br
+              = f.check_box :vg
+              %span{:style => "font-weight: normal"} Vida em Grupo
+          %tr
+            %th OUTRAS INFORMAÇÕES
+            %th
+          %tr
+            %td Prefere ser contatado de que forma?*
+            %td             
+              = f.radio_button :contact, "E-mail"
+              %span{:style => "font-weight: normal"} E-mail
+              %br
+              = f.radio_button :contact, "Telefone"
+              %span{:style => "font-weight: normal"} Telefone
+              %br
+              = f.radio_button :contact, "Pessoalmente"
+              %span{:style => "font-weight: normal"} Pessoalmente
+          %tr
+            %td Comentários adicionais:
+            %td 
+              = f.text_area :obs, :cols => 50, :rows => 10, :maxlength => 500, :style => "resize: none"
+          %tr
+            %td
+            %td 
+              = f.submit "Enviar"
+      %br
+  .col-right
+    #column-right
+      #content-right
+        %h4#budget Cotação
+        %ul
+          %li 
+            =link_to "- Automóvel", budget_auto_path
+          %li 
+            =link_to "- Equipamentos Portáteis", budget_portatil_path
+          %li 
+            =link_to "- Outros ramos", budget_other_path
+        %h4#links Link's úteis
+        %ul
+          %li 
+            %a{:href => "http://www.fipe.org.br/web/indices/veiculos/introducao.aspx", :target => "_blank"} - Tabela FIPE
+          %li 
+            %a{:href => "http://www.sincor.org.br", :target => "_blank"} - Sincor
+          %li 
+            %a{:href => "http://www.susep.gov.br/", :target => "_blank"} - Susep
+          %li 
+            %a{:href => "http://servicos.uol.com.br/detrans.jhtm", :target => "_blank"} - Detrans do Brasil
+          %li 
+            %a{:href => "http://www.denatran.gov.br", :target => "_blank"} - Denatran
+          %li
+            %a{:href => "http://www.dprf.gov.br/", :target => "_blank"} - Polícia Rodoviária Federal
+        %h4#tips Perguntas Frequentes
+        %ul
+          %li 
+            %a{:href => "#"} - O que é perda total do veículo?
+          %li 
+            %a{:href => "#"} - O que é Carro Reserva?
+          %li 
+            %a{:href => "#"} - O que é danos a terceiros?
+          %li 
+            %a{:href => "#"} - O que é CASCO?
+          %li 
+            %a{:href => "#"} - Outras perguntas...
+:javascript
+  $(document).ready(function(){
+    $('.cotacao').css("background-color", "#098FAF");
+    
+    $("#budget_form").validate();
+
+    $("#budget_form").keypress(function(e) {
+      if (e.which == 13) {
+        return false;
+      }
+    });
+  });

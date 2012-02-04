@@ -8,25 +8,15 @@ class BudgetMailer < ActionMailer::Base
     mail :to => "cotacao@bdseguros.com.br", :subject => "Pedido de cotação AUTO: " + @budget_auto[:name]
   end
 
-  # Subject can be set in your I18n file at config/locales/en.yml
-  # with the following lookup:
-  #
-  #   en.budget_mailer.life.subject
-  #
-  def life
-    @greeting = "Hi"
-
-    mail :to => "to@example.org"
+  def portatil(budget_portatil)
+    @budget_portatil = budget_portatil    
+        
+    mail :to => "cotacao@bdseguros.com.br", :subject => "Pedido de cotação Portatil: " + @budget_portatil[:name]
   end
 
-  # Subject can be set in your I18n file at config/locales/en.yml
-  # with the following lookup:
-  #
-  #   en.budget_mailer.others.subject
-  #
-  def others
-    @greeting = "Hi"
-
-    mail :to => "to@example.org"
+  def other(budget_other)
+    @budget_other = budget_other    
+        
+    mail :to => "cotacao@bdseguros.com.br", :subject => "Pedido de cotação Outros Ramos: " + @budget_other[:name]
   end
 end

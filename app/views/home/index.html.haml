@@ -6,19 +6,22 @@
         .feature
           %h3 Seguro de Equipamentos Portáteis
           %p Se você locomove-se com frequência e não pode correr o risco de ficar sem acesso a sua principal ferramenta de trabalho e comunicação, entre em contato conosco e conheça mais este produto.
-          %a{:href => "#"} Leia mais
+          %a
+            =link_to "Leia mais", budget_portatil_path
         .hr
         %img.home-icon{:alt => "Vida Individual", :border => "0", :src => "../assets/mini_vida.png", :title => "Vida Individual"}
         .feature
           %h3 Seguro de Vida Individual
           %p Um bom seguro de vida é aquele que se preocupa com você também no presente. Ao contratar este produto você garante a sua tranquilidade e a proteção de quem mais ama, agora e no futuro.
-          %a{:href => "#"} Leia mais
+          %a
+            =link_to "Leia mais", budget_other_path(:type => "vida")
         .hr
         %img.home-icon{:alt => "Condomínio", :border => "0", :src => "../assets/mini_condominio.png", :title => "Condomínio"}
         .feature
           %h3 Seguro Condomínio
           %p Sob medida para condomínios verticais residenciais, comerciais, mistos, de escritórios e/ou consultórios, flats e apart-hotéis, bem como condomínios residenciais horizontais. Com preço acessível e pagamento facilitado, ele oferece inúmeras vantagens.
-          %a{:href => "#"} Leia mais
+          %a
+            =link_to "Leia mais", budget_other_path(:type => "condominio")
         .hr
   .col-right
     #column-right
@@ -28,21 +31,23 @@
           %li 
             =link_to "- Automóvel", budget_auto_path
           %li 
-            %a{:href => "#"} - Vida Individual
+            =link_to "- Equipamentos Portáteis", budget_portatil_path
           %li 
-            %a{:href => "#"} - Equipamentos Portáteis
-          %li 
-            %a{:href => "#"} - Outros ramos
-        %h4#news Notícias e Destaques
+            =link_to "- Outros ramos", budget_other_path
+        %h4#links Link's úteis
         %ul
           %li 
-            %a{:href => "#"} - Um corretor ativo para cada 3 mil brasileiros...
+            %a{:href => "http://www.fipe.org.br/web/indices/veiculos/introducao.aspx", :target => "_blank"} - Tabela FIPE
           %li 
-            %a{:href => "#"} - Corretor sem ética pode ser julgado...
+            %a{:href => "http://www.sincor.org.br", :target => "_blank"} - Sincor
           %li 
-            %a{:href => "#"} - Alto índice de assalto reforça necessidade...
+            %a{:href => "http://www.susep.gov.br/", :target => "_blank"} - Susep
           %li 
-            %a{:href => "#"} - Quando a falta de documentos vira multa...     
+            %a{:href => "http://servicos.uol.com.br/detrans.jhtm", :target => "_blank"} - Detrans do Brasil
+          %li 
+            %a{:href => "http://www.denatran.gov.br", :target => "_blank"} - Denatran
+          %li
+            %a{:href => "http://www.dprf.gov.br/", :target => "_blank"} - Polícia Rodoviária Federal
         %h4#tips Perguntas Frequentes
         %ul
           %li 

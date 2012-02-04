@@ -74,11 +74,11 @@
         =@budget_auto[:owner]
       %td{:bgcolor => "#F1F1F1"} Opcionais do veículo:
       %td
-        = (@budget_auto[:ar] == "0" ? nil : "Ar condicionado")
-        #{(@budget_auto[:direcao] == "0" ? nil : ", Direção")}
-        #{(@budget_auto[:vidros] == "0" ? nil : ", Vidros")}
-        #{(@budget_auto[:abs] == "0" ? nil : ", ABS")}
-        #{(@budget_auto[:alarm] == "0" ? nil : ", Alarme")}
+        = (@budget_auto[:ar] == "0" ? nil : "- Ar condicionado")
+        #{(@budget_auto[:direcao] == "0" ? nil : "- Direção")}
+        #{(@budget_auto[:vidros] == "0" ? nil : "- Vidros")}
+        #{(@budget_auto[:abs] == "0" ? nil : "- ABS")}
+        #{(@budget_auto[:alarm] == "0" ? nil : "- Alarme")}
     %tr
       %td{:bgcolor => "#F1F1F1"} Sistema anti-furto:
       %td 
@@ -154,12 +154,12 @@
         = @budget_auto[:residence_closed_perfil]
       %td{:bgcolor => "#F1F1F1"} Garagem fechada?
       %td
-        = (@budget_auto[:garage_residence_perfil] == "0" ? nil : "Na residência")
-        #{(@budget_auto[:garage_job_perfil] == "0" ? nil : "No trabalho")} 
-        #{(@budget_auto[:garage_school_perfil] == "0" ? nil : "Na escola")} 
-        #{(@budget_auto[:garage_not_job_perfil] == "0" ? nil : "Não trabalha ou não utiliza para ir ao trabalho")} 
-        #{(@budget_auto[:garage_not_school_perfil] == "0" ? nil : "Não estuda ou não utiliza para ir a escola/faculdade")} 
-        #{(@budget_auto[:garage_not_perfil] == "0" ? nil : "Não possui garagem")} 
+        = (@budget_auto[:garage_residence_perfil] == "0" ? nil : "- Na residência")
+        #{(@budget_auto[:garage_job_perfil] == "0" ? nil : "- No trabalho")} 
+        #{(@budget_auto[:garage_school_perfil] == "0" ? nil : "- Na escola")} 
+        #{(@budget_auto[:garage_not_job_perfil] == "0" ? nil : "- Não trabalha ou não utiliza para ir ao trabalho")} 
+        #{(@budget_auto[:garage_not_school_perfil] == "0" ? nil : "- Não estuda ou não utiliza para ir a escola/faculdade")} 
+        #{(@budget_auto[:garage_not_perfil] == "0" ? nil : "- Não possui garagem")} 
       %td{:bgcolor => "#F1F1F1"} Quantidade de veículos:
       %td
         = @budget_auto[:vehicle_ammount_perfil]

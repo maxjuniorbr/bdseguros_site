@@ -1,0 +1,144 @@
+#home
+  .col-left
+    #main
+      %h2 
+        Seguro de Equipamentos Portáteis
+        %img.alignright{:alt => "Equipamentos Portáteis", :border => "0", :src => "../assets/cot_portatil_g.png", :title => "Equipamentos Portáteis"}
+      %p Você já pensou em contratar um seguro para seu notebook, smartphone (iPhone, BlackBerry entre outros), iPad ou outros modelos de tablets, e até mesmo câmeras fotográficas e filmadoras e assim, garantir a reposição do equipamento no caso de danos ou sinistros?
+      %p
+        %strong Principais coberturas disponíveis para contratação:
+      %ul        
+        %li - Incêndio, raio ou explosão.
+        %li - Impacto de veículos terrestres e aeronaves.    
+        %li - Subtração de bens* (Opcional).
+        %li - Danos elétricos (Opcional).
+        %li - Garantias internacionais (Opcional).
+        %li - Garantias para acessórios (Opcional).
+        %li 
+          %span{:style => "font-size: 10px"}* exceto quanto deixado em veículos.
+      .hr
+      - unless @message.blank?
+        #message
+          = @message
+          - @message = ""
+      %p 
+        %strong Solicitação de cotação de seguro de equipamentos portáteis
+      = form_for :budget_portatil, :url => budget_portatil_path, :html => {:id => "budget_form"} do |f|
+        %table
+          %tr 
+            %th DADOS DO CLIENTE
+            %th
+          %tr
+            %td Nome completo*:
+            %td 
+              = f.text_field :name, :maxlength => 100, :size => 40, :class => "required"
+          %tr
+            %td CPF*:
+            %td 
+              = f.text_field :cpf, :maxlength => 14, :size => 40, :class => "required"
+          %tr
+            %td Data de nascimento*:
+            %td 
+              = f.text_field :birth, :maxlength => 10, :size => 40, :class => "required"
+          %tr
+            %td E-mail*:
+            %td 
+              = f.email_field :mail, :maxlength => 100, :size => 40, :class => "required"
+          %tr
+            %td Telefone de contato*:
+            %td 
+              = f.text_field :phone, :maxlength => 14, :size => 40, :class => "required"
+          %tr 
+            %th DADOS DO APARELHO
+            %th
+          %tr
+            %td Tipo de aparelho*:
+            %td 
+              = f.select :device_type, options_for_select(["Notebook", "Smartphone", "Tablet", "Câmera", "Filmadora"]), {:prompt => "Selecione"}, {:class => "required"}
+          %tr
+            %td Marca/Modelo*:
+            %td 
+              = f.text_field :maker, :maxlength => 10, :size => 40, :class => "required"
+          %tr 
+            %th DADOS DA NOTA FISCAL
+            %th
+          %tr
+            %td Data de emissão*:
+            %td 
+              = f.text_field :nf_date, :maxlength => 10, :size => 40, :class => "required"
+          %tr
+            %td Valor (R$)*:
+            %td 
+              = f.text_field :nf_value, :maxlength => 10, :size => 40, :class => "required"
+          %tr
+            %th OUTRAS INFORMAÇÕES
+            %th
+          %tr
+            %td Prefere ser contatado de que forma?*
+            %td             
+              = f.radio_button :contact, "E-mail"
+              %span{:style => "font-weight: normal"} E-mail
+              %br
+              = f.radio_button :contact, "Telefone"
+              %span{:style => "font-weight: normal"} Telefone
+              %br
+              = f.radio_button :contact, "Pessoalmente"
+              %span{:style => "font-weight: normal"} Pessoalmente
+          %tr
+            %td Comentários adicionais:
+            %td 
+              = f.text_area :obs, :cols => 50, :rows => 10, :maxlength => 500, :style => "resize: none"
+          %tr
+            %td
+            %td 
+              = f.submit "Enviar"
+      %br
+  .col-right
+    #column-right
+      #content-right
+        %h4#budget Cotação
+        %ul
+          %li 
+            =link_to "- Automóvel", budget_auto_path
+          %li 
+            =link_to "- Equipamentos Portáteis", budget_portatil_path
+          %li 
+            =link_to "- Outros ramos", budget_other_path
+        %h4#links Link's úteis
+        %ul
+          %li 
+            %a{:href => "http://www.fipe.org.br/web/indices/veiculos/introducao.aspx", :target => "_blank"} - Tabela FIPE
+          %li 
+            %a{:href => "http://www.sincor.org.br", :target => "_blank"} - Sincor
+          %li 
+            %a{:href => "http://www.susep.gov.br/", :target => "_blank"} - Susep
+          %li 
+            %a{:href => "http://servicos.uol.com.br/detrans.jhtm", :target => "_blank"} - Detrans do Brasil
+          %li 
+            %a{:href => "http://www.denatran.gov.br", :target => "_blank"} - Denatran
+          %li
+            %a{:href => "http://www.dprf.gov.br/", :target => "_blank"} - Polícia Rodoviária Federal
+        %h4#tips Perguntas Frequentes
+        %ul
+          %li 
+            %a{:href => "#"} - O que é perda total do veículo?
+          %li 
+            %a{:href => "#"} - O que é Carro Reserva?
+          %li 
+            %a{:href => "#"} - O que é danos a terceiros?
+          %li 
+            %a{:href => "#"} - O que é CASCO?
+          %li 
+            %a{:href => "#"} - Outras perguntas...
+:javascript
+  $(document).ready(function(){
+    $('.cotacao').css("background-color", "#098FAF");
+    
+    $("#budget_form").validate();
+
+    $("#budget_form").keypress(function(e) {
+      if (e.which == 13) {
+        return false;
+      }
+    });
+  });

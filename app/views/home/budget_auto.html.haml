@@ -8,8 +8,8 @@
       %p
         %strong Vantagens e serviços
       %ul
-        %li - Procuramos a melhor seguradora de acordo com seu perfil;
-        %li - Atendimento personalizado e 24 horas no caso de sinistros;
+        %li - Procuramos a melhor seguradora de acordo com seu perfil.
+        %li - Atendimento personalizado e 24 horas no caso de sinistros.
         %li - Vistoria no melhor local para o segurado.
         %li - Parcelamento do seguro em até 6x sem juros e até 12x com juros.
       .hr
@@ -382,21 +382,23 @@
           %li 
             =link_to "- Automóvel", budget_auto_path
           %li 
-            %a{:href => "#"} - Vida Individual
+            =link_to "- Equipamentos Portáteis", budget_portatil_path
           %li 
-            %a{:href => "#"} - Equipamentos Portáteis
-          %li 
-            %a{:href => "#"} - Outros ramos
-        %h4#news Notícias e Destaques
+            =link_to "- Outros ramos", budget_other_path
+        %h4#links Link's úteis
         %ul
           %li 
-            %a{:href => "#"} - Um corretor ativo para cada 3 mil brasileiros...
+            %a{:href => "http://www.fipe.org.br/web/indices/veiculos/introducao.aspx", :target => "_blank"} - Tabela FIPE
           %li 
-            %a{:href => "#"} - Corretor sem ética pode ser julgado...
+            %a{:href => "http://www.sincor.org.br", :target => "_blank"} - Sincor
           %li 
-            %a{:href => "#"} - Alto índice de assalto reforça necessidade...
+            %a{:href => "http://www.susep.gov.br/", :target => "_blank"} - Susep
           %li 
-            %a{:href => "#"} - Quando a falta de documentos vira multa...     
+            %a{:href => "http://servicos.uol.com.br/detrans.jhtm", :target => "_blank"} - Detrans do Brasil
+          %li 
+            %a{:href => "http://www.denatran.gov.br", :target => "_blank"} - Denatran
+          %li
+            %a{:href => "http://www.dprf.gov.br/", :target => "_blank"} - Polícia Rodoviária Federal
         %h4#tips Perguntas Frequentes
         %ul
           %li 
