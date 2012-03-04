@@ -10,7 +10,7 @@
   %div{:style => "float:left; width:210px; margin:45px 0 0 110px; font-size:8pt; color:#7E898B; font-weight:normal; display:inline"}
     %a{:href => ""}
       %p{:style => "font-size:15pt; letter-spacing:-1px; padding-bottom:5px; font-weight:bold;"} Perguntas frequentes
-      %p{:style => "color:#69777B"} Consulte aqui as principais perguntas e respostas sobre seguros.
+      %p{:style => "color:#69777B"} Consulte aqui as principais perguntas e respostas sobre seguro.
 #conteudo
   #content_left
     = form_tag do
@@ -27,7 +27,7 @@
               = text_field_tag :login, "insira seu login", :style => "color:#ADB4B4;font-size:11pt;width:235px;border:1px solid #eee;height:30px;padding:4px;"
           %tr
             %td{:style => "height:43px;padding-left: 175px;"}
-              = password_field_tag :password, "123456", :style => "color:#ADB4B4;font-size:11pt;width:172px;border:1px solid #eee;height:30px;padding:4px;"
+              = password_field_tag :password, "123456", :style => "color:#ADB4B4;font-size:11pt;border:1px solid #eee;height:30px;padding:4px;"
               = submit_tag :acessar, :style => "padding:4px;", :id => "acessar"
   #content_right
     %a{:href => ""}
@@ -54,13 +54,17 @@
       %br/
 :javascript
   $(document).ready(function () {
+    $("#pagina_inicial").css("color", "#FFF");
+    $.browser.chrome = /chrome/.test(navigator.userAgent.toLowerCase());
     if ($.browser.mozilla) {
       $("#password").css("width", "160px");
-    }
-    if ($.browser.msie) {
+    } else if ($.browser.msie) {
       $("#password").css("width", "150px");
-    }
-    $("#pagina_inicial").css("color", "#FFF");
+    } else if ($.browser.chrome) {
+      $("#password").css("width", "172px");
+    } else {
+      $("#password").css("width", "100px");
+    }    
   });
 
   $("#acessar").click(function () {
