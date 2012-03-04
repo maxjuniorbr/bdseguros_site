@@ -6,6 +6,10 @@ class HomeController < ApplicationController
   def budget
   end
 
+  def index_new
+    render :layout => "application_new"
+  end
+
   def budget_auto
     if params[:commit] == "Enviar"      
       if BudgetMailer.automobile(params[:budget_auto]).deliver

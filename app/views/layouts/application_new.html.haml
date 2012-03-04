@@ -1,0 +1,88 @@
+!!!
+%html
+  %head
+    %title Bornia e Dianin Corretora de Seguros
+    = stylesheet_link_tag    "application_new"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+  %body{:style => "background-image: url('../assets/banner_principal.jpg'); background-color: #FFF; background-repeat:no-repeat; background-attachment:inherit; background-position:50% 0%; font-family:Arial"}
+    #wrap
+      #topo
+        %img{:align => "left", :alt => "BDSeguros", :src => "../assets/logo.jpg", :style => "margin-top:15px;", :title => "BDSeguros"}
+          %img{:align => "right", :alt => "Telefone (44) 3233-2184 ou (44) 3232-1896", :src => "../assets/phone.jpg", :style => "margin-top:30px;", :title => "Telefone (44) 3233-2184 ou (44) 3232-1896"}
+      #menu
+        %table{:cellpadding => "0", :cellspacing => "0", :style => "height:39px"}
+          %tbody
+            %tr
+              %td{:style => "padding:0 13px 0 15px"}
+                %a#pagina_inicial{:href => "/"} Página Inicial
+              %td{:style => "padding:0 13px 0 13px"}
+                %a{:href => ""} Quem somos
+              %td{:style => "padding:0 13px 0 13px"}
+                %a{:href => ""} Seguros
+              %td{:style => "padding:0 13px 0 13px"}
+                %a{:href => ""} Sinistros
+              %td{:style => "padding:0 13px 0 13px"}
+                %a{:href => ""} Seguradoras
+              %td{:style => "padding:0 13px 0 13px"}
+                %a{:href => ""} Cotação
+              %td{:style => "padding:0 13px 0 13px"}
+                %a{:href => ""} Glossário
+              %td{:style => "padding:0 13px 0 13px"}
+                %a{:href => ""} Fale Conosco
+      #banner_principal
+        %table{:cellpadding => "0", :cellspacing => "0", :style => "width:500px; margin:10px 0 0 15px"}
+          %tbody
+            %tr
+              %td{:style => "color:#FFFFFF; font-size:30pt; font-family:Tahoma,Arial; letter-spacing:-2px; height:90px; font-weight:bold"}
+                Bornia e Dianin Corretora de Seguros.
+            %tr
+              %td{:style => "color:#D1F5FF; font-size:12pt; font-weight:normal; line-height:170%; height:145px;"}
+                Com mais de 12 anos de experiência no mercado somos uma empresa sólida e respeitada,
+                atuando nos mais diversos ramos de seguros sempre buscamos o melhor produto para o
+                cliente apresentando preço justo, qualidade e um excelente atendimento.
+            %tr
+              %td{:style => "height:45px; padding-top:5px"}
+                %a{:href => ""}
+                  %img.transparent{:alt => "Nossos seguros", :src => "../assets/bt_nseguros.jpg"}/
+                %a{:href => ""}
+                  %img.transparent{:alt => "Contatos", :src => "../assets/bt_contato.jpg"}/
+      = yield
+    #rodape
+      #wrap
+        %table{:width => "100%"}
+          %tbody
+            %tr
+              %td{:style => "vertical-align: top;width: 198px;"}
+                %strong
+                  Seguros
+                %br
+                %a{:href => "#", :style => "font-size: 12px;"}Para você ou sua empresa
+              %td{:style => "vertical-align: top;width: 198px;"}
+                %strong
+                  Sinistros
+                %br
+                %a{:href => "#", :style => "font-size: 12px;"}Atendimento a sinistros
+              %td{:style => "vertical-align: top;width: 198px;"}
+                %strong
+                  Seguradoras
+                %br
+                %a{:href => "#", :style => "font-size: 12px;"}Nossos parceiros
+              %td{:style => "vertical-align: top;width: 198px;"}
+                %strong
+                  Outros links
+                %br
+                %a{:href => "#", :style => "font-size: 12px;"}Quem somos
+                %br
+                %a{:href => "#", :style => "font-size: 12px;"}Cotação
+                %br
+                %a{:href => "#", :style => "font-size: 12px;"}Glossário
+              %td{:style => "vertical-align: top;width: 198px;"} 
+                %strong
+                  Contato
+                %br
+                %a{:href => "#", :style => "font-size: 12px;"}Fale conosco
+                %br
+                %a{:href => "#", :style => "font-size: 12px;"}Trabalhe conosco
+        %p{:style => "text-align: center; font-size: 12px; color: #BBB;"}
+          Copyright © 2011-2012 Bornia e Dianin Corretora de Seguros. Todo o conteúdo deste site é de uso exclusivo.

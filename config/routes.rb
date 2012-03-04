@@ -5,6 +5,7 @@ Bdsite::Application.routes.draw do
   match 'cotacao/automovel' => 'home#budget_auto', :as => 'budget_auto'
   match 'cotacao/portatil' => 'home#budget_portatil', :as => 'budget_portatil'
   match 'cotacao/outros' => 'home#budget_other', :as => 'budget_other'
+  match 'novo' => 'home#index_new'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

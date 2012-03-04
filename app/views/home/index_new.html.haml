@@ -1,0 +1,69 @@
+#vantagens
+  %div{:style => "float:left; width:210px; margin:45px 0 0 110px; font-size:8pt; color:#7E898B; font-weight:normal; display:inline"}
+    %a{:href => ""}
+      %p{:style => "font-size:15pt; letter-spacing:-1px; padding-bottom:5px; font-weight:bold;"} Cotação
+      %p{:style => "color:#69777B"} Confira nossas soluções para você, sua família ou empresa.
+  %div{:style => "float:left; width:210px; margin:45px 0 0 110px; font-size:8pt; color:#7E898B; font-weight:normal; display:inline"}
+    %a{:href => ""}
+      %p{:style => "font-size:15pt; letter-spacing:-1px; padding-bottom:5px; font-weight:bold;"} Link's úteis
+      %p{:style => "color:#69777B"} Acesso aos principais serviços e seguradoras.
+  %div{:style => "float:left; width:210px; margin:45px 0 0 110px; font-size:8pt; color:#7E898B; font-weight:normal; display:inline"}
+    %a{:href => ""}
+      %p{:style => "font-size:15pt; letter-spacing:-1px; padding-bottom:5px; font-weight:bold;"} Perguntas frequentes
+      %p{:style => "color:#69777B"} Consulte aqui as principais perguntas e respostas sobre seguros.
+#conteudo
+  #content_left
+    = form_tag do
+      %table{:cellpadding => "0", :cellspacing => "0", :style => "width:425px; margin-top:10px"}
+        %tbody
+          %tr
+            %td{:colspan => "2", :style => "height:20px; font-size:18pt; font-weight:bold; color:#4B4B4B; letter-spacing:-1px; text-align: right;"}
+              Central do Segurado
+          %tr
+            %td{:style => "height:75px; font-size:11pt; color:#727272; font-weight:normal; line-height:145%;padding-left: 175px;"}
+              Se você já é um cliente BDSeguros acesse sua área exclusiva:
+          %tr
+            %td{:style => "height:35px;padding-left: 175px;"}
+              = text_field_tag :login, "insira seu login", :style => "color:#ADB4B4;font-size:11pt;width:235px;border:1px solid #eee;height:30px;padding:4px;"
+          %tr
+            %td{:style => "height:43px;padding-left: 175px;"}
+              = password_field_tag :password, "123456", :style => "color:#ADB4B4;font-size:11pt;width:172px;border:1px solid #eee;height:30px;padding:4px;"
+              = submit_tag :acessar, :style => "padding:4px;", :id => "acessar"
+  #content_right
+    %a{:href => ""}
+      %p{:style => "font-size:18pt; font-weight:bold; letter-spacing:-1px; padding-bottom:5px;"}
+        Seguro de Equipamentos Portáteis
+      %p{:style => "padding-top:7px; color: #69777B;"}
+        Se você locomove-se com frequência e não pode correr o risco de ficar sem acesso a sua principal
+        ferramenta de trabalho e comunicação, entre em contato conosco e conheça mais este produto.
+      %br/
+    %a{:href => ""}
+      %p{:style => "font-size:18pt; font-weight:bold; letter-spacing:-1px; padding-bottom:5px;"}
+        Seguro de Vida Individual
+      %p{:style => "padding-top:7px; color: #69777B;"}
+        Um bom seguro de vida é aquele que se preocupa com você também no presente.
+        Ao contratar este produto você garante a sua tranquilidade e a proteção de quem mais ama, agora e no futuro.
+      %br/
+    %a{:href => ""}
+      %p{:style => "font-size:18pt; font-weight:bold; letter-spacing:-1px; padding-bottom:5px;"}
+        Seguro Condomínio
+      %p{:style => "padding-top:7px; color: #69777B;"}
+        Sob medida para condomínios verticais residenciais, comerciais, mistos, de escritórios
+        e/ou consultórios, flats e apart-hotéis, bem como condomínios residenciais horizontais.
+        Com preço acessível e pagamento facilitado, ele oferece inúmeras vantagens.
+      %br/
+:javascript
+  $(document).ready(function () {
+    if ($.browser.mozilla) {
+      $("#password").css("width", "160px");
+    }
+    if ($.browser.msie) {
+      $("#password").css("width", "150px");
+    }
+    $("#pagina_inicial").css("color", "#FFF");
+  });
+
+  $("#acessar").click(function () {
+    alert("Sistema em desenvolvimento.");
+    return false;
+  });
