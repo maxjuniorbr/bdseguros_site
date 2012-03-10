@@ -41,11 +41,11 @@
               Se você já é um cliente BDSeguros acesse sua área exclusiva:
           %tr
             %td{:style => "height:35px;padding-left: 175px;"}
-              = text_field_tag :login, "insira seu login", :style => "color:#ADB4B4;font-size:11pt;width:235px;border:1px solid #eee;height:30px;padding:4px;"
+              = text_field_tag :login, "insira seu login", :style => "color:#ADB4B4; font-size:11pt; width:235px; height:30px; padding:4px;"
           %tr
             %td{:style => "height:43px;padding-left: 175px;"}
-              = password_field_tag :password, "123456", :style => "color:#ADB4B4;font-size:11pt;width:172px;border:1px solid #eee;height:30px;padding:4px;"
-              = submit_tag :acessar, :style => "padding:4px;", :id => "acessar"
+              = password_field_tag :password, "123456", :style => "color:#ADB4B4; font-size:11pt; width:160px; height:30px; padding:4px;"
+              = submit_tag :acessar, :class => "button", :id => "acessar"
   #content_right
     %a{:href => "", :onclick => "alert('Sistema em desenvolvimento.');return false;" }
       %p{:style => "font-size:18pt; font-weight:bold; letter-spacing:-1px; padding-bottom:5px;"}
@@ -74,11 +74,11 @@
     $("#pagina_inicial").css("color", "#FFF");
     $.browser.chrome = /chrome/.test(navigator.userAgent.toLowerCase());
     if ($.browser.mozilla) {
-      $("#password").css("width", "160px");
-    } else if ($.browser.msie) {
       $("#password").css("width", "150px");
+    } else if ($.browser.msie) {
+      $("#password").css("width", "135px");
     } else if ($.browser.chrome) {
-      $("#password").css("width", "172px");
+      $("#password").css("width", "160px");
     } else {
       $("#password").css("width", "100px");
     }    

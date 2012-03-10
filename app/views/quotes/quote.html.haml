@@ -16,18 +16,73 @@
           %a{:href => "#{quote_path}"}
             %img.transparent{:alt => "Solicite uma cotação", :src => "../assets/bt_tproduto.jpg"}/
 #conteudo
-  #content{:style => "margin: 30px 0 20px 15px"}
+  #content_left{:style => "margin-top: 30px"}
+    %p{:style => "font-size:18pt; font-weight:bold; letter-spacing:-1px; padding-bottom:5px; color: #4B4B4B"}
+      Para iniciar a simulação, preencha o formulário abaixo com os dados da pessoa que será segurada:
+    %br/
+    %p
+      Todos os campos abaixo são de preenchimento obrigatório.
+    %br/
     = form_for :quote, :url => quote_path, :html => {:id => "quote_form"} do |f|
-      Selecione um produto:
-      = f.select :type_quote, options_for_select(@quote_types), {:prompt => "Selecione"}, {:class => "required", :style => "width: 257px"}
-  #form_quote
-    =# render(:partial => "auto")
+      %p{:style => "padding-top:0px; color:#4B4B4B;"}
+        %strong= f.label "Nome completo", :for => "quote_name"
+        %br= f.text_field :name, :maxlength => 100, :class => "required", :style => "width: 455px"
+      %p{:style => "padding-top:7px; color:#4B4B4B;"}
+        %strong= f.label "CPF", :for => "quote_cpf"
+        %br= f.text_field :cpf, :class => "required", :style => "width: 455px", :alt => "cpf"
+      %p{:style => "padding-top:7px; color:#4B4B4B;"}
+        %strong= f.label "Telefone celular", :for => "quote_phone_cell"
+        %br= f.text_field :phone_cell, :class => "required", :style => "width: 455px", :alt => "phone"
+      %p{:style => "padding-top:7px; color:#4B4B4B;"}
+        %strong= f.label "E-mail", :for => "quote_mail"
+        %br= f.text_field :mail, :maxlength => 100, :class => "required", :style => "width: 455px"
+      %p{:style => "padding-top:7px; color:#4B4B4B;"}
+        %strong= f.label "Cep residencial", :for => "quote_zip_home"
+        %br= f.text_field :zip_home, :class => "required", :style => "width: 455px", :alt => "cep"
+      %p{:style => "padding-top:7px; color:#4B4B4B;"}
+        %strong= f.label "Número da residência", :for => "quote_number_home"
+        %br= f.text_field :number_home, :maxlength => 10, :class => "required", :style => "width: 455px"
+      %p{:style => "padding-top:7px; color:#4B4B4B;"}
+        %strong= f.label "O seguro é novo?"
+        %br= f.select :insurance_new, options_for_select([["Sim", 0], ["Não", 1]]), {:prompt => "Selecione"}, {:style => "width: 455px"}
+      %p{:style => "padding-top:7px; color:#4B4B4B;"}
+        %strong= f.label "Qual a modalidade do seguro?"
+        %br= f.select :type_insurance, options_for_select([["Automóvel", 0]]), {:prompt => "Selecione"}, {:style => "width: 455px"}
+      %p{:style => "padding-top:20px"}
+        = f.submit "Iniciar simulação", :class => "button"
+      %br/
+  #content_right{:style => "border-left: 1px solid #DDD; padding-left: 20px; height: 780px;"}
+    %p{:style => "font-size:18pt; font-weight:bold; letter-spacing:-1px; padding-bottom:5px; color: #4B4B4B"}
+      Confira como funciona:
+    %ul.step_quote
+      %li
+        %span 1
+        Preencha os dados solicitados nesta tela
+      %li
+        %span 2
+        Selecione a modalidade do seguro
+      %li
+        %span 3
+        Preencha os dados do segurado
+      %li
+        %span 4
+        Preencha os dados complementares
+      %li
+        %span 5
+        Entraremos em contato para apresentar uma cotação
 :javascript
   $(document).ready(function () {
     $("#cotacao").css("color", "#FFF");
+
+    (function($){
+      $(function(){
+        $('input:text').setMask();
+      });
+    })(jQuery);
   });
+
   $("#quote_type_quote").change(function() {
     if($("#quote_type_quote").val() == "0") {
-      $.get("#{quote_path}", $("#quote_type_quote").serialize(), null, 'script');
+      $("#quote_form").submit();
     }
   });
