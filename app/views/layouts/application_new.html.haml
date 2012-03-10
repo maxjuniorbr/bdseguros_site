@@ -5,7 +5,7 @@
     = stylesheet_link_tag    "application_new"
     = javascript_include_tag "application"
     = csrf_meta_tags
-  %body{:style => "background-image: url('../assets/banner_principal.jpg'); background-color: #FFF; background-repeat:no-repeat; background-attachment:inherit; background-position:50% 0%; font-family:Arial"}
+  %body{:style => "#{@body = @body.nil? ? '' : @body}"}
     #wrap
       #topo
         %img{:align => "left", :alt => "BDSeguros", :src => "../assets/logo.jpg", :style => "margin-top:15px;", :title => "BDSeguros"}
@@ -15,38 +15,19 @@
           %tbody
             %tr
               %td{:style => "padding:0 13px 0 15px"}
-                %a#pagina_inicial{:href => "/"} Página Inicial
+                = link_to "Página Inicial", index_new_path, :id => "pagina_inicial"
               %td{:style => "padding:0 13px 0 13px"}
-                %a{:href => ""} Quem somos
+                = link_to "Seguros", insurance_path, :id => "seguros"
               %td{:style => "padding:0 13px 0 13px"}
-                %a{:href => ""} Seguros
+                = link_to "Sinistros", index_new_path, :id => "sinistros", :onclick => "alert('Sistema em desenvolvimento.');return false;"
               %td{:style => "padding:0 13px 0 13px"}
-                %a{:href => ""} Sinistros
+                = link_to "Seguradoras", index_new_path, :id => "seguradoras", :onclick => "alert('Sistema em desenvolvimento.');return false;"
               %td{:style => "padding:0 13px 0 13px"}
-                %a{:href => ""} Seguradoras
+                = link_to "Cotação", quote_path, :id => "cotacao"
               %td{:style => "padding:0 13px 0 13px"}
-                %a{:href => ""} Cotação
+                = link_to "Perguntas frequentes", index_new_path, :id => "perguntas_frequentes", :onclick => "alert('Sistema em desenvolvimento.');return false;"
               %td{:style => "padding:0 13px 0 13px"}
-                %a{:href => ""} Glossário
-              %td{:style => "padding:0 13px 0 13px"}
-                %a{:href => ""} Fale Conosco
-      #banner_principal
-        %table{:cellpadding => "0", :cellspacing => "0", :style => "width:500px; margin:10px 0 0 15px"}
-          %tbody
-            %tr
-              %td{:style => "color:#FFFFFF; font-size:30pt; font-family:Tahoma,Arial; letter-spacing:-2px; height:90px; font-weight:bold"}
-                Bornia e Dianin Corretora de Seguros.
-            %tr
-              %td{:style => "color:#D1F5FF; font-size:12pt; font-weight:normal; line-height:170%; height:145px;"}
-                Com mais de 12 anos de experiência no mercado somos uma empresa sólida e respeitada,
-                atuando nos mais diversos ramos de seguros sempre buscamos o melhor produto para o
-                cliente apresentando preço justo, qualidade e um excelente atendimento.
-            %tr
-              %td{:style => "height:45px; padding-top:5px"}
-                %a{:href => ""}
-                  %img.transparent{:alt => "Nossos seguros", :src => "../assets/bt_nseguros.jpg"}/
-                %a{:href => ""}
-                  %img.transparent{:alt => "Contatos", :src => "../assets/bt_contato.jpg"}/
+                = link_to "Fale Conosco", index_new_path, :id => "fale_conosco", :onclick => "alert('Sistema em desenvolvimento.');return false;"
       = yield
     #rodape
       #wrap
@@ -56,33 +37,31 @@
               %td{:style => "vertical-align: top;width: 198px;"}
                 %strong
                   Seguros
-                %br
-                %a{:href => "#", :style => "font-size: 12px;"}Para você ou sua empresa
+                %br/
+                = link_to "Para você ou sua empresa", insurance_path, :style => "font-size: 12px;"
               %td{:style => "vertical-align: top;width: 198px;"}
                 %strong
                   Sinistros
-                %br
-                %a{:href => "#", :style => "font-size: 12px;"}Atendimento a sinistros
+                %br/
+                = link_to "Atendimento a sinistros", index_new_path, :onclick => "alert('Sistema em desenvolvimento.');return false;", :style => "font-size: 12px;"
               %td{:style => "vertical-align: top;width: 198px;"}
                 %strong
                   Seguradoras
-                %br
-                %a{:href => "#", :style => "font-size: 12px;"}Nossos parceiros
+                %br/
+                = link_to "Nossos parceiros", index_new_path, :onclick => "alert('Sistema em desenvolvimento.');return false;", :style => "font-size: 12px;"
               %td{:style => "vertical-align: top;width: 198px;"}
                 %strong
                   Outros links
-                %br
-                %a{:href => "#", :style => "font-size: 12px;"}Quem somos
-                %br
-                %a{:href => "#", :style => "font-size: 12px;"}Cotação
-                %br
-                %a{:href => "#", :style => "font-size: 12px;"}Glossário
+                %br/
+                = link_to "Cotação", quote_path, :style => "font-size: 12px;"
+                %br/
+                = link_to "Perguntas frequentes", index_new_path, :onclick => "alert('Sistema em desenvolvimento.');return false;", :style => "font-size: 12px;"
               %td{:style => "vertical-align: top;width: 198px;"} 
                 %strong
                   Contato
-                %br
-                %a{:href => "#", :style => "font-size: 12px;"}Fale conosco
-                %br
-                %a{:href => "#", :style => "font-size: 12px;"}Trabalhe conosco
+                %br/
+                = link_to "Fale conosco", index_new_path, :onclick => "alert('Sistema em desenvolvimento.');return false;", :style => "font-size: 12px;"
+                %br/
+                = link_to "Trabalhe conosco", index_new_path, :onclick => "alert('Sistema em desenvolvimento.');return false;", :style => "font-size: 12px;"
         %p{:style => "text-align: center; font-size: 12px; color: #BBB;"}
           Copyright © 2011-2012 Bornia e Dianin Corretora de Seguros. Todo o conteúdo deste site é de uso exclusivo.

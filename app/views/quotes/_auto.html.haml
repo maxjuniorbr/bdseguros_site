@@ -1,0 +1,215 @@
+#content{:style => "margin: 30px 0 20px 15px"}
+  = form_for :quote, :url => quote_path, :html => {:id => "quote_form"} do |f|
+    %table{:border => "0"}
+      %tr
+        %td{:colspan => "4"}
+          %p{:style => "font-size:18pt; font-weight:bold; letter-spacing:-1px; color: #4B4B4B"}
+            Cotação de Seguro Automóvel
+          %p{:style => "padding-top:7px; color: #69777B;"}
+            Dados do cliente
+          %br/
+      %tr
+        %td{:width => "195px", :style => "border-bottom: 1px solid #DDD; font-weight:bold; line-height: 35px"}
+          = f.label "Nome*", :for => "quote_name"
+        %td{:width => "300px"}
+          = f.text_field :name, :maxlength => 100, :class => "required", :style => "width: 87%"
+        %td{:width => "195px", :style => "border-bottom: 1px solid #DDD; font-weight:bold"}
+          = f.label "Cpf*", :for => "quote_cpf"
+        %td{:width => "300px"}
+          = f.text_field :cpf, :maxlength => 14, :class => "required", :style => "width: 87%"
+      %tr
+        %td{:width => "195px", :style => "border-bottom: 1px solid #DDD; font-weight:bold; line-height: 35px"}
+          = f.label "Data de nascimento*", :for => "quote_birth"
+        %td{:width => "300px"}
+          = f.text_field :birth, :maxlength => 10, :class => "required", :style => "width: 87%"
+        %td{:width => "195px", :style => "border-bottom: 1px solid #DDD; font-weight:bold"}
+          = f.label "Sexo*"
+        %td{:width => "300px"}
+          = f.select :sex, options_for_select(["Masculino", "Feminino"]), {:prompt => "Selecione"}, {:class => "required", :style => "width: 90%"}
+      %tr
+        %td{:width => "195px", :style => "border-bottom: 1px solid #DDD; font-weight:bold; line-height: 35px"}
+          = f.label "Estado civil*"
+        %td{:width => "300px"}
+          = f.select :marital_status, options_for_select(["Solteiro(a)", "Casado", "União Estável (minimo 2 anos)", "Separado", "Divorciado", "Viúvo"]), {:prompt => "Selecione"}, {:class => "required", :style => "width: 90%"}
+        %td{:width => "195px", :style => "border-bottom: 1px solid #DDD; font-weight:bold"}
+          = f.label "E-mail*", :for => "quote_mail"
+        %td{:width => "300px"}
+          = f.email_field :mail, :maxlength => 100, :class => "required", :style => "width: 87%"
+      %tr
+        %td{:width => "195px", :style => "border-bottom: 1px solid #DDD; font-weight:bold; line-height: 35px"}
+          = f.label "Telefone de contato*", :for => "quote_phone"
+        %td{:width => "300px"}
+          = f.text_field :phone, :maxlength => 14, :class => "required", :style => "width: 87%"
+        %td{:width => "195px"}
+        %td{:width => "300px"}
+      %tr
+        %td{:colspan => "4"}
+          %p{:style => "padding-top:7px; color: #69777B;"}
+            Dados do veículo
+          %br/
+      %tr
+        %td{:width => "195px", :style => "border-bottom: 1px solid #DDD; font-weight:bold; line-height: 35px"}
+          = f.label "Marca*", :for => "quote_maker"
+        %td{:width => "300px"}
+          = f.text_field :maker, :maxlength => 100, :class => "required", :style => "width: 87%"
+        %td{:width => "195px", :style => "border-bottom: 1px solid #DDD; font-weight:bold"}
+          = f.label "Modelo*", :for => "quote_model_type"
+        %td{:width => "300px"}
+          = f.text_field :model_type, :maxlength => 100, :class => "required", :style => "width: 87%"
+      %tr
+        %td{:width => "195px", :style => "border-bottom: 1px solid #DDD; font-weight:bold; line-height: 35px"}
+          = f.label "Combustível*"
+        %td{:width => "300px"}
+          = f.select :fuel, options_for_select(["Álcool e Gasolina (Flex)", "Álcool", "Gasolina", "Diesel", "Gás Natural", "Outro"]), {:prompt => "Selecione"}, {:class => "required", :style => "width: 90%"}
+        %td{:width => "195px", :style => "border-bottom: 1px solid #DDD; font-weight:bold"}
+          = f.label "Ano de fabricação*"
+        %td{:width => "300px"}
+          = select_year(nil, {:start_year => 2012, :end_year => 1982, :prompt => "Selecione"}, {:name => "budget_auto[year_maker]", :class => "required", :id => "year_maker", :style => "width: 90%"})
+      %tr
+        %td{:width => "195px", :style => "border-bottom: 1px solid #DDD; font-weight:bold; line-height: 35px"}
+          = f.label "Ano de modelo*"
+        %td{:width => "300px"}
+          = select_year(nil, {:start_year => 2012, :end_year => 1982, :prompt => "Selecione"}, {:name => "budget_auto[year_model]", :class => "required", :id => "year_model", :style => "width: 63%"})
+          = f.check_box :zero
+          = f.label "Zero KM", :for => "quote_zero"
+        %td{:width => "195px", :style => "border-bottom: 1px solid #DDD; font-weight:bold"}
+          = f.label "CHASSI", :for => "quote_chassi"
+        %td{:width => "300px"}
+          = f.text_field :chassi, :maxlength => 30, :style => "width: 87%"
+      %tr
+        %td{:width => "195px", :style => "border-bottom: 1px solid #DDD; font-weight:bold"}
+          = f.label "Placa", :for => "quote_licence"
+        %td{:width => "300px"}
+          = f.text_field :licence, :maxlength => 8, :style => "width: 87%"
+        %td{:width => "195px", :style => "border-bottom: 1px solid #DDD; font-weight:bold; line-height: 35px"}
+          = f.label "Renavam", :for => "quote_renavam"
+        %td{:width => "300px"}
+          = f.text_field :renavam, :maxlength => 30, :style => "width: 40%"
+          = f.label "Estado"
+          = f.select :renavam_state, options_for_select(@br_states), {:prompt => "Selecione"}, {:style => "width: 28%"}
+      %tr
+        %td{:width => "195px", :style => "border-bottom: 1px solid #DDD; font-weight:bold; line-height: 35px"}
+          = f.label "CEP de circulação*", :for => "quote_zip_code_1"
+        %td{:width => "300px"}
+          = f.text_field :zip_code_1, :maxlength => 9, :class => "required", :style => "width: 40%"
+          = f.label "Estado"
+          = f.select :zip_code_1_state, options_for_select(@br_states), {:prompt => "Selecione"}, {:style => "width: 28%"}
+        %td{:width => "195px", :style => "border-bottom: 1px solid #DDD; font-weight:bold; line-height: 35px"}
+          = f.label "CEP de pernoite*", :for => "quote_zip_code_2"
+        %td{:width => "300px"}
+          = f.text_field :zip_code_2, :maxlength => 9, :class => "required", :style => "width: 40%"
+          = f.label "Estado"
+          = f.select :zip_code_2_state, options_for_select(@br_states), {:prompt => "Selecione"}, {:style => "width: 28%"}
+      %tr
+        %td{:width => "195px", :style => "border-bottom: 1px solid #DDD; font-weight:bold; line-height: 35px"}
+          = f.label "Proprietário do veículo*"
+        %td{:width => "300px"}
+          = f.select :owner, options_for_select(["Próprio", "Cônjuge", "Filhos", "Pais", "Outros"]), {:prompt => "Selecione"}, {:class => "required", :style => "width: 90%"}
+        %td{:width => "195px", :style => "border-bottom: 1px solid #DDD; font-weight:bold"}
+          = f.label "Opcionais do veículo", :for => "quote_model_type"
+        %td{:width => "300px"}
+          = f.check_box :ar
+          = f.label "Ar", :for => "quote_ar"
+          = f.check_box :direcao
+          = f.label "Direção", :for => "quote_direcao"
+          = f.check_box :vidros
+          = f.label "Vidros", :for => "quote_vidros"
+          = f.check_box :abs
+          = f.label "ABS", :for => "quote_abs"
+      %tr
+        %td{:width => "195px", :style => "border-bottom: 1px solid #DDD; font-weight:bold; line-height: 35px"}
+          = f.label "Sistema anti-furto*"
+        %td{:width => "300px"}
+          = f.select :antifurto, options_for_select(["Não possui", "Sistema original de fábrica", "Bloqueador rádio frequência", "Corta ignição", "Pager", "Rastreador", "Trava Mul-T-Lock", "Trava carneiro", "Alarme comum", "Outros"]), {:prompt => "Selecione"}, {:class => "required", :style => "width: 90%"}
+        %td{:width => "195px", :style => "border-bottom: 1px solid #DDD; font-weight:bold"}
+          = f.label "Alienado ou financiado?*"
+        %td{:width => "300px"}
+          = f.radio_button :alienado, true
+          = f.label "Sim", :for => "quote_alienado_true"
+          = f.radio_button :alienado, false
+          = f.label "Não", :for => "quote_alienado_false"
+      %tr
+        %td{:width => "195px", :style => "border-bottom: 1px solid #DDD; font-weight:bold; line-height: 35px"}
+          = f.label "Renovação?"
+        %td{:width => "300px"}
+          = f.radio_button :renovacao, true
+          = f.label "Sim", :for => "quote_renovacao_true"
+          = f.radio_button :renovacao, false
+          = f.label "Não", :for => "quote_renovacao_false"
+        %td{:width => "195px", :style => "border-bottom: 1px solid #DDD; font-weight:bold"}
+          = f.label "Nome da seguradora", :for => "quote_insurance"
+        %td{:width => "300px"}
+          = f.text_field :insurance, :maxlength => 100, :style => "width: 87%"
+      %tr
+        %td{:width => "195px", :style => "border-bottom: 1px solid #DDD; font-weight:bold"}
+          = f.label "Bônus atual"
+        %td{:width => "300px"}
+          = f.select :bonus, options_for_select(0..20), {:prompt => "Selecione"}, {:style => "width: 90%"}
+        %td{:width => "195px", :style => "border-bottom: 1px solid #DDD; font-weight:bold"}
+          = f.label "Utiliz. o seguro este ano?"
+        %td{:width => "300px"}
+          = f.radio_button :sinistro, true
+          = f.label "Sim, por danos", :for => "quote_sinistro_true"
+          = f.select :sinistro_danos, options_for_select(["ao própio veículo", "à terceiros"]), {:prompt => "Selecione"}, {:style => "width: 28%"}
+          = f.radio_button :sinistro, false
+          = f.label "Não", :for => "quote_sinistro_false"
+      %tr
+        %td{:width => "195px", :style => "border-bottom: 1px solid #DDD; font-weight:bold; line-height: 35px"} 
+          = f.label "Venc. da apólice atual", :for => "quote_maturity"
+        %td{:width => "300px"}
+          = f.text_field :maturity, :maxlength => 10, :style => "width: 87%"
+        %td{:width => "195px"}
+        %td{:width => "300px"}
+      %tr
+        %td{:colspan => "4"}
+          %p{:style => "padding-top:7px; color: #69777B;"}
+            Perfil do segurado
+          %p{:style => "padding-top:7px; color: #69777B;"}
+            O perfil tem por objetivo identificar o risco do seguro, as respostas devem ser verdadeiras podendo em caso de inverdade acarretar a redução total ou parcial do valor a ser indenizado.
+          %br/
+      %tr
+        %td{:style => "border-bottom: 1px solid #DDD; font-weight:bold; line-height: 35px; width: 50%", :colspan => "2"} 
+          = f.label "O segurado e/ou condutor principal tiveram veículos roubados nos últimos 3 anos?*"
+        %td{:colspan => "2"}
+          = f.radio_button :theft, true
+          = f.label "Sim", :for => "quote_theft_true"
+          = f.radio_button :theft, false
+          = f.label "Não", :for => "quote_theft_false"
+      %tr
+        %td{:style => "border-bottom: 1px solid #DDD; font-weight:bold; line-height: 35px", :colspan => "2"} 
+          = f.label "Relação do condutor principal (pessoa que utiliza o veículo 85% do tempo) com o segurado?*"
+        %td{:width => "", :colspan => "2"}
+          = f.radio_button :relacao_cond_seg, "Próprio"
+          = f.label "Próprio", :for => "quote_relacao_cond_seg_prprio"
+          = f.radio_button :relacao_cond_seg, "Cônjuge"
+          = f.label "Cônjuge", :for => "quote_relacao_cond_seg_cnjuge"
+          = f.radio_button :relacao_cond_seg, "Filho"
+          = f.label "Filho", :for => "quote_relacao_cond_seg_filho"
+          = f.radio_button :relacao_cond_seg, "Outro"
+          = f.label "Outro", :for => "quote_relacao_cond_seg_outro"
+          = f.text_field :relacao_cond_seg_outro, :maxlength => 20, :style => "width: 33%"
+      %tr
+        %td{:width => "195px", :style => "border-bottom: 1px solid #DDD; font-weight:bold; line-height: 35px"}
+          = f.label "Nome*", :for => "quote_name_perfil"
+        %td{:width => "300px"}
+          = f.text_field :name_perfil, :maxlength => 100, :class => "required", :style => "width: 87%"
+        %td{:width => "195px", :style => "border-bottom: 1px solid #DDD; font-weight:bold"}
+          = f.label "Cpf*", :for => "quote_cpf_perfil"
+        %td{:width => "300px"}
+          = f.text_field :cpf_perfil, :maxlength => 14, :class => "required", :style => "width: 87%"
+      %tr
+        %td{:width => "195px", :style => "border-bottom: 1px solid #DDD; font-weight:bold; line-height: 35px"}
+          = f.label "Data de nascimento*", :for => "quote_birth_perfil"
+        %td{:width => "300px"}
+          = f.text_field :birth_perfil, :maxlength => 10, :class => "required", :style => "width: 87%"
+        %td{:width => "195px", :style => "border-bottom: 1px solid #DDD; font-weight:bold"}
+          = f.label "Sexo*"
+        %td{:width => "300px"}
+          = f.select :sex_perfil, options_for_select(["Masculino", "Feminino"]), {:prompt => "Selecione"}, {:class => "required", :style => "width: 90%"}
+      %tr
+        %td{:width => "195px", :style => "border-bottom: 1px solid #DDD; font-weight:bold; line-height: 35px"}
+          = f.label "Estado civil*"
+        %td{:width => "300px"}
+          = f.select :marital_status_perfil, options_for_select(["Solteiro(a)", "Casado", "União Estável (minimo 2 anos)", "Separado", "Divorciado", "Viúvo"]), {:prompt => "Selecione"}, {:class => "required", :style => "width: 90%"}
+        %td{:width => "195px"}
+        %td{:width => "300px"}

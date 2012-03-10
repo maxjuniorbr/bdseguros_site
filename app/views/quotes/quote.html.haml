@@ -1,0 +1,33 @@
+#banner_principal
+  %table{:cellpadding => "0", :cellspacing => "0", :style => "width:500px; margin:10px 0 0 15px"}
+    %tbody
+      %tr
+        %td{:style => "color:#FFFFFF; font-size:30pt; font-family:Tahoma,Arial; letter-spacing:-2px; height:90px; font-weight:bold"}
+          Seguros para você e sua família.
+      %tr
+        %td{:style => "color:#D1F5FF; font-size:12pt; font-weight:normal; line-height:170%; height:145px"}
+          %p{:style => "margin-bottom: 10px"}
+            Confira as melhores condições de contratação selecionando um produto e
+            preenchendo o formulário abaixo.
+          %p{:style => "margin-bottom: 10px"}
+            Se desejar, entre em contato através de nossos telefones ou pelo nosso fale conosco.
+      %tr{:style => "display: none", :id => "bt_tproduto"}
+        %td{:style => "height:45px; padding-top:5px"}
+          %a{:href => "#{quote_path}"}
+            %img.transparent{:alt => "Solicite uma cotação", :src => "../assets/bt_tproduto.jpg"}/
+#conteudo
+  #content{:style => "margin: 30px 0 20px 15px"}
+    = form_for :quote, :url => quote_path, :html => {:id => "quote_form"} do |f|
+      Selecione um produto:
+      = f.select :type_quote, options_for_select(@quote_types), {:prompt => "Selecione"}, {:class => "required", :style => "width: 257px"}
+  #form_quote
+    =# render(:partial => "auto")
+:javascript
+  $(document).ready(function () {
+    $("#cotacao").css("color", "#FFF");
+  });
+  $("#quote_type_quote").change(function() {
+    if($("#quote_type_quote").val() == "0") {
+      $.get("#{quote_path}", $("#quote_type_quote").serialize(), null, 'script');
+    }
+  });

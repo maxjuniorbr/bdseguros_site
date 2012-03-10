@@ -1,0 +1,8 @@
+<% if @type_quote = "0" %>
+  $('#bt_tproduto').show();
+  $('#content').remove();
+  $('#form_quote').empty();
+  $('#form_quote').append("<%= escape_javascript(render(:partial => "auto")) %>");
+<% else %>
+  $('#form_quote').empty();
+<% end %>
