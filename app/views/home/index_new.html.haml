@@ -76,11 +76,16 @@
     if ($.browser.mozilla) {
       $("#password").css("width", "146px");
     } else if ($.browser.msie) {
-      $("#password").css("width", "132px");
+      if ($.browser.version >= 8) {
+        $("#password").css("width", "157px");
+      }
+      else {
+        $("#password").css("width", "131px");
+      }
     } else if ($.browser.chrome) {
       $("#password").css("width", "157px");
     } else {
-      $("#password").css("width", "120px");
+      $("#password").css("width", "154px");
     }
   });
 
