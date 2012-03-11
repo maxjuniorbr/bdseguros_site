@@ -1,3 +1,4 @@
+#version
 #banner_principal
   %table{:cellpadding => "0", :cellspacing => "0", :style => "width:500px; margin:10px 0 0 15px"}
     %tbody
@@ -37,14 +38,14 @@
             %td{:colspan => "2", :style => "height:20px; font-size:18pt; font-weight:bold; color:#4B4B4B; letter-spacing:-1px; text-align: right;"}
               Central do Segurado
           %tr
-            %td{:style => "height:75px; font-size:11pt; color:#727272; font-weight:normal; line-height:145%;padding-left: 175px;"}
+            %td{:style => "height:65px; font-size:11pt; color:#727272; font-weight:normal; line-height:145%;padding-left: 175px;"}
               Se você já é um cliente BDSeguros acesse sua área exclusiva:
           %tr
             %td{:style => "height:35px;padding-left: 175px;"}
-              = text_field_tag :login, "insira seu login", :style => "color:#ADB4B4; font-size:11pt; width:235px; height:30px; padding:4px;"
+              = text_field_tag :login, "insira seu login", :style => "color:#ADB4B4; font-size:11pt; width:230px; height:30px; padding:4px;"
           %tr
-            %td{:style => "height:43px;padding-left: 175px;"}
-              = password_field_tag :password, "123456", :style => "color:#ADB4B4; font-size:11pt; width:160px; height:30px; padding:4px;"
+            %td{:style => "height:50px;padding-left: 175px;"}
+              = password_field_tag :password, "123456", :style => "color:#ADB4B4; font-size:11pt; width:157px; height:30px; padding:4px;"
               = submit_tag :acessar, :class => "button", :id => "acessar"
   #content_right
     %a{:href => "", :onclick => "alert('Sistema em desenvolvimento.');return false;" }
@@ -74,14 +75,16 @@
     $("#pagina_inicial").css("color", "#FFF");
     $.browser.chrome = /chrome/.test(navigator.userAgent.toLowerCase());
     if ($.browser.mozilla) {
-      $("#password").css("width", "150px");
+      $("#password").css("width", "146px");
     } else if ($.browser.msie) {
-      $("#password").css("width", "135px");
+      $("#password").css("width", "132px");
     } else if ($.browser.chrome) {
-      $("#password").css("width", "160px");
+      $("#password").css("width", "157px");
     } else {
-      $("#password").css("width", "100px");
-    }    
+      $("#password").css("width", "120px");
+    }
+
+    $("#version").append($.browser.version)
   });
 
   $("#acessar").click(function () {
