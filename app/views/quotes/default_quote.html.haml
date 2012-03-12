@@ -1,0 +1,98 @@
+#banner_principal
+  %table{:cellpadding => "0", :cellspacing => "0", :style => "width:500px; margin:10px 0 0 15px"}
+    %tbody
+      %tr
+        %td{:style => "color:#FFFFFF; font-size:30pt; font-family:Tahoma,Arial; letter-spacing:-2px; height:90px; font-weight:bold"}
+          Seguros para você e sua família.
+      %tr
+        %td{:style => "color:#D1F5FF; font-size:12pt; font-weight:normal; line-height:170%; height:145px"}
+          %p{:style => "margin-bottom: 10px"}
+            Confira as melhores condições de contratação selecionando um produto e
+            preenchendo o formulário abaixo.
+          %p{:style => "margin-bottom: 10px"}
+            Se desejar, entre em contato através de nossos telefones ou pelo nosso fale conosco.
+      %tr{:style => "display: none", :id => "bt_tproduto"}
+        %td{:style => "height:45px; padding-top:5px"}
+          %a{:href => "#{default_quote_path}"}
+            %img.transparent{:alt => "Solicite uma cotação", :src => "../assets/bt_tproduto.jpg"}/
+#conteudo
+  #content_left{:style => "margin-top: 30px"}
+    %p{:style => "font-size:18pt; font-weight:bold; letter-spacing:-1px; padding-bottom:5px; color: #4B4B4B"}
+      Para iniciar a simulação, preencha o formulário abaixo com os dados da pessoa que será segurada:
+    %br/
+    %p
+      Todos os campos abaixo são de preenchimento obrigatório.
+    %br/
+    = form_for :quote, :url => default_quote_path, :html => {:id => "quote_form"} do |f|
+      %p{:style => "padding-top:0px; color:#4B4B4B;"}
+        %strong= f.label "Nome completo", :for => "quote_name"
+        %br= f.text_field :name, :maxlength => 100, :style => "width: 455px", :class => "required"
+      %p{:style => "padding-top:7px; color:#4B4B4B;"}
+        %strong= f.label "CPF", :for => "quote_cpf"
+        %br= f.text_field :cpf, :style => "width: 455px", :alt => "cpf", :class => "required"
+      %p{:style => "padding-top:7px; color:#4B4B4B;"}
+        %strong= f.label "Telefone celular", :for => "quote_phone_cell"
+        %br= f.text_field :phone_cell, :style => "width: 455px", :alt => "phone", :class => "required"
+      %p{:style => "padding-top:7px; color:#4B4B4B;"}
+        %strong= f.label "E-mail", :for => "quote_mail"
+        %br= f.text_field :mail, :maxlength => 100, :style => "width: 455px", :class => "required"
+      %p{:style => "padding-top:7px; color:#4B4B4B;"}
+        %strong= f.label "Cep residencial", :for => "quote_zip_home"
+        %br= f.text_field :zip_home, :style => "width: 455px", :alt => "cep", :class => "required"
+      %p{:style => "padding-top:7px; color:#4B4B4B;"}
+        %strong= f.label "Número da residência", :for => "quote_number_home"
+        %br= f.text_field :number_home, :maxlength => 10, :style => "width: 455px", :class => "required"
+      %p{:style => "padding-top:7px; color:#4B4B4B;"}
+        %strong= f.label "O seguro é novo?"
+        %br= f.select :insurance_new, options_for_select([["Sim", 0], ["Não", 1]]), {:prompt => "Selecione"}, {:style => "width: 455px", :class => "required"}
+      %p{:style => "padding-top:7px; color:#4B4B4B;"}
+        %strong= f.label "Qual a modalidade do seguro?"
+        %br= f.select :type_insurance, options_for_select([["Automóvel", 0]]), {:prompt => "Selecione"}, {:style => "width: 455px", :class => "required"}
+      %p{:style => "padding-top:20px"}
+        = f.submit "Iniciar simulação", :class => "button"
+  #content_right{:style => "border-left: 1px solid #DDD; padding-left: 20px; height: 780px;"}
+    %p{:style => "font-size:18pt; font-weight:bold; letter-spacing:-1px; padding-bottom:5px; color: #4B4B4B"}
+      Confira como funciona:
+    %ul.step_quote
+      %li
+        %span 1
+        Preencha os dados solicitados nesta tela
+      %li
+        %span 2
+        Selecione a modalidade do seguro
+      %li
+        %span 3
+        Preencha os dados do segurado
+      %li
+        %span 4
+        Preencha os dados complementares
+      %li
+        %span 5
+        Entraremos em contato para apresentar uma cotação
+/[If IE 7]
+  #force_space{:style => "clear: left"}
+
+:javascript
+  $(document).ready(function () {
+    $("#cotacao").css("color", "#FFF");
+
+    (function($){
+      $(function(){
+        $('input:text').setMask();
+      });
+    })(jQuery);
+
+    $("#quote_form").validate();
+
+    $("#quote_form").keypress(function(e) {
+      if (e.which == 13) {
+        return false;
+      }
+    });
+  });
+
+  $("#quote_type_quote").change(function() {
+    if($("#quote_type_quote").val() == "0") {
+      $("#quote_form").submit();
+    }
+  });

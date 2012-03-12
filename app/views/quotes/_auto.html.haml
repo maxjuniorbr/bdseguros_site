@@ -4,7 +4,7 @@
 
   - #if @partial.nil?
     - #unless @partial.nil?
-      = #form_for :quote, :url => quote_path, :html => {:id => "quote_form"} do |f|
+      = #form_for :quote, :url => default_quote_path, :html => {:id => "quote_form"} do |f|
         Selecione um produto:
         = #f.select :type_quote, options_for_select(@quote_types), {:prompt => "Selecione"}, {:class => "required", :style => "width: 257px"}
     - #else
@@ -25,7 +25,7 @@
 
 
   #div_hidden{:style => "display: none"}
-    = form_for :quote, :url => quote_path, :html => {:id => "quote_form"} do |f|
+    = form_for :quote, :url => default_quote_path, :html => {:id => "quote_form"} do |f|
       %table{:border => "0"}
         %tr
           %td{:colspan => "4"}

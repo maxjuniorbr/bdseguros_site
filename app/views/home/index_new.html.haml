@@ -17,7 +17,7 @@
             %img.transparent{:alt => "Contatos", :src => "../assets/bt_contato.jpg"}/
 #vantagens
   %div{:style => "float:left; width:210px; margin:45px 0 0 110px; font-size:8pt; color:#7E898B; font-weight:normal; display:inline"}
-    %a{:href => "#{quote_path}"}
+    %a{:href => "#{default_quote_path}"}
       %p{:style => "font-size:15pt; letter-spacing:-1px; padding-bottom:5px; font-weight:bold;"} Cotação
       %p{:style => "color:#69777B"} Confira nossas soluções para você, sua família ou empresa.
   %div{:style => "float:left; width:210px; margin:45px 0 0 110px; font-size:8pt; color:#7E898B; font-weight:normal; display:inline"}
@@ -47,27 +47,31 @@
               = password_field_tag :password, "123456", :style => "color:#ADB4B4; font-size:11pt; width:157px; height:30px; padding:4px;"
               = submit_tag :acessar, :class => "button", :id => "acessar"
   #content_right
-    %a{:href => "", :onclick => "alert('Sistema em desenvolvimento.');return false;" }
+    %a{:href => "#{insurance_path}#equipamentos_portateis"}
       %p{:style => "font-size:18pt; font-weight:bold; letter-spacing:-1px; padding-bottom:5px;"}
         Seguro de Equipamentos Portáteis
       %p{:style => "padding-top:7px; color: #69777B;"}
-        Se você locomove-se com frequência e não pode correr o risco de ficar sem acesso a sua principal
-        ferramenta de trabalho e comunicação, entre em contato conosco e conheça mais este produto.
+        Você já pensou em contratar um seguro para seu notebook, smartphone (iPhone, BlackBerry, 
+        Android entre outros), iPad ou outros modelos de tablets, e até mesmo câmeras 
+        fotográficas e filmadoras e assim, garantir a reposição do equipamento no caso de danos 
+        ou sinistros?
       %br/
-    %a{:href => "", :onclick => "alert('Sistema em desenvolvimento.');return false;" }
+    %a{:href => "#{insurance_path}#vida"}
       %p{:style => "font-size:18pt; font-weight:bold; letter-spacing:-1px; padding-bottom:5px;"}
         Seguro de Vida Individual
       %p{:style => "padding-top:7px; color: #69777B;"}
         Um bom seguro de vida é aquele que se preocupa com você também no presente.
-        Ao contratar este produto você garante a sua tranquilidade e a proteção de quem mais ama, agora e no futuro.
+        Ao contratar este produto você garante a sua tranquilidade e a proteção de quem mais ama, 
+        agora e no futuro.
       %br/
-    %a{:href => "", :onclick => "alert('Sistema em desenvolvimento.');return false;" }
+    %a{:href => "#{insurance_path}#condominio"}
       %p{:style => "font-size:18pt; font-weight:bold; letter-spacing:-1px; padding-bottom:5px;"}
         Seguro Condomínio
       %p{:style => "padding-top:7px; color: #69777B;"}
-        Sob medida para condomínios verticais residenciais, comerciais, mistos, de escritórios
-        e/ou consultórios, flats e apart-hotéis, bem como condomínios residenciais horizontais.
-        Com preço acessível e pagamento facilitado, ele oferece inúmeras vantagens.
+        O seguro condomínio é ideal para você que gosta de acumular vantagens e não problemas. 
+        Além de ser simples de contratar, ele é completo, porque oferece coberturas que protegem 
+        o condomínio, o síndico e os colaboradores, além de serviços emergenciais gratuitos, 
+        preços e condições de pagamentos vantajosos.
       %br/
 :javascript
   $(document).ready(function () {

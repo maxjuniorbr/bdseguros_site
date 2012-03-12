@@ -8,7 +8,7 @@ Bdsite::Application.routes.draw do
   match 'novo/seguros' => 'home#insurance', :as => 'insurance'
 
   #Quotes match
-  match 'novo/cotacao' => 'quotes#quote', :as => 'quote'
+  match 'novo/cotacao' => 'quotes#default_quote', :as => 'default_quote'
 
   match 'cotacao' => 'home#budget', :as => 'budget'
   match 'cotacao/automovel' => 'home#budget_auto', :as => 'budget_auto'

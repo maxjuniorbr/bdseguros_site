@@ -23,7 +23,7 @@
               %td{:style => "padding:0 13px 0 13px"}
                 = link_to "Seguradoras", index_new_path, :id => "seguradoras", :onclick => "alert('Sistema em desenvolvimento.');return false;"
               %td{:style => "padding:0 13px 0 13px"}
-                = link_to "Cotação", quote_path, :id => "cotacao"
+                = link_to "Cotação", default_quote_path, :id => "cotacao"
               %td{:style => "padding:0 13px 0 13px"}
                 = link_to "Perguntas frequentes", index_new_path, :id => "perguntas_frequentes", :onclick => "alert('Sistema em desenvolvimento.');return false;"
               %td{:style => "padding:0 13px 0 13px"}
@@ -53,7 +53,7 @@
                 %strong
                   Outros links
                 %br/
-                = link_to "Cotação", quote_path, :style => "font-size: 12px;"
+                = link_to "Cotação", default_quote_path, :style => "font-size: 12px;"
                 %br/
                 = link_to "Perguntas frequentes", index_new_path, :onclick => "alert('Sistema em desenvolvimento.');return false;", :style => "font-size: 12px;"
               %td{:style => "vertical-align: top;width: 198px;"} 
