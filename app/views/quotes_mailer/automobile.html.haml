@@ -1,0 +1,305 @@
+#quote-mailer
+  %p
+    Olá, o cliente #{@quote_auto[:default_quote][:name]} esta solicitando uma cotação de seguro para seu automóvel, segue os dados informados para cotação abaixo:
+  %br
+  %table{:border => 1, :width => 800, :cellspacing => 0, :cellpadding => 0}
+    %tr
+      %th{:colspan => 6} DADOS DO CLIENTE
+    %tr
+      %td{:width => 100, :bgcolor => "#F1F1F1"} Nome completo:
+      %td{:width => 200}= @quote_auto[:default_quote][:name]
+      %td{:width => 100, :bgcolor => "#F1F1F1"} CPF:
+      %td{:width => 200}= @quote_auto[:default_quote][:cpf]
+      %td{:width => 100, :bgcolor => "#F1F1F1"} Data de nascimento:
+      %td{:width => 200}= @quote_auto[:default_quote][:birth]
+    %tr
+      %td{:bgcolor => "#F1F1F1"} E-mail:
+      %td= @quote_auto[:default_quote][:mail]    
+      %td{:bgcolor => "#F1F1F1"} Telefone celular:
+      %td= @quote_auto[:default_quote][:phone_cell]
+      %td{:bgcolor => "#F1F1F1"} Cep residencial:
+      %td= @quote_auto[:default_quote][:zip_home]
+    %tr
+      %td{:bgcolor => "#F1F1F1"} Número da residência:
+      %td{:colspan => 6}= @quote_auto[:default_quote][:number_home]
+    %tr
+      %th{:colspan => 6} DADOS DO VEÍCULO
+    %tr
+      %td{:bgcolor => "#F1F1F1"} Marca:
+      %td= @quote_auto[:quote1][:maker]
+      %td{:bgcolor => "#F1F1F1"} Modelo:
+      %td= @quote_auto[:quote1][:model]
+      %td{:bgcolor => "#F1F1F1"} Combustível:
+      %td
+        - case @quote_auto[:quote1][:fuel]
+        - when "0"
+          Álcool e Gasolina (Flex)
+        - when "1"
+          Álcool
+        - when "2"
+          Gasolina
+        - when "3"
+          Diesel
+        - when "4"
+          Gás natural
+        - else
+          Não informado
+    %tr
+      %td{:bgcolor => "#F1F1F1"} Ano de fabricação:
+      %td= @quote_auto[:quote1][:year_maker]
+      %td{:bgcolor => "#F1F1F1"} Ano de modelo:
+      %td
+        =@quote_auto[:quote1][:year_model]
+        #{(@quote_auto[:quote1][:zero].nil? ? nil : " (Zero KM)")}
+      %td{:bgcolor => "#F1F1F1"} CHASSI:
+      %td= @quote_auto[:quote1][:chassi]
+    %tr
+      %td{:bgcolor => "#F1F1F1"} Placa:
+      %td= @quote_auto[:quote1][:licence]
+      %td{:bgcolor => "#F1F1F1"} Renavam:
+      %td
+        =@quote_auto[:quote1][:renavam]
+        #{(@quote_auto[:quote1][:uf_circulation].nil? ? nil : " - " + @quote_auto[:quote1][:uf_circulation])}
+      %td{:bgcolor => "#F1F1F1"} Cidade de circulação:
+      %td
+        =@quote_auto[:quote1][:city_circulation]
+        #{@quote_auto[:quote1][:uf_circulation].nil? ? nil : " - " + @quote_auto[:quote1][:uf_circulation]}
+    %tr
+      %td{:bgcolor => "#F1F1F1"} Proprietário do veículo:
+      %td
+        - case @quote_auto[:quote1][:proprietario_veiculo]
+        - when "0"
+          Próprio
+        - when "1"
+          Cônjuge
+        - when "2"
+          Filhos
+        - when "3"
+          Pais
+        - when "4"
+          Outros
+      %td{:bgcolor => "#F1F1F1"} Sistema anti-furto:
+      %td
+        - case @quote_auto[:quote1][:anti_furto]
+        - when "0"
+          Não possui
+        - when "1"
+          Sistema original de fábrica
+        - when "2"
+          Bloqueador rádio frequência
+        - when "3"
+          Corta ignição
+        - when "4"
+          Pager
+        - when "5"
+          Rastreador
+        - when "6"
+          Trava Mul-T-Lock
+        - when "7"
+          Trava carneiro
+        - when "8"
+          Alarme comum
+        - when "9"
+          Outros
+      %td{:bgcolor => "#F1F1F1"} Veículo alienado ou financiado?
+      %td
+        -case @quote_auto[:quote1][:alienado_finaciado]
+        - when "0"
+          Sim
+        - when "1"
+          Não
+    %tr
+      %td{:bgcolor => "#F1F1F1"} Renovação?
+      %td
+        -case @quote_auto[:default_quote][:insurance_new]
+        - when "0"
+          Sim
+        - when "1"
+          Não
+      %td{:bgcolor => "#F1F1F1"} Nome da seguradora:
+      %td= @quote_auto[:quote1][:actual_insurance]
+      %td{:bgcolor => "#F1F1F1"} Bônus:
+      %td= @quote_auto[:quote1][:actual_insurance_bonus]
+    %tr
+      %td{:bgcolor => "#F1F1F1"} Vencimento da apólice atual:
+      %td{:colspan => 6}= @quote_auto[:quote1][:actual_insurance_maturity]
+    %tr
+      %th{:colspan => 6} PERFIL DO CONDUTOR
+    %tr
+      %td{:colspan => 5, :bgcolor => "#F1F1F1"} Relação do condutor principal (pessoa que utiliza o veículo 85% do tempo) com o segurado?
+      %td
+        - if @quote_auto[:quote2][:relacao_cond_seg] == "Outro"
+          Outro (#{@quote_auto[:quote2][:relacao_cond_seg_outro_name]})
+        - else
+          =@quote_auto[:quote2][:relacao_cond_seg]
+    %tr
+      %td{:bgcolor => "#F1F1F1"} Nome:
+      %td= @quote_auto[:quote2][:perfil_name]
+      %td{:bgcolor => "#F1F1F1"} CPF:
+      %td= @quote_auto[:quote2][:perfil_cpf]
+      %td{:bgcolor => "#F1F1F1"} Data de nascimento:
+      %td= @quote_auto[:quote2][:perfil_birth]
+    %tr
+      %td{:bgcolor => "#F1F1F1"} Sexo:
+      %td
+        - case @quote_auto[:quote2][:perfil_sex]
+        - when "0"
+          Masculino
+        - when "1"
+          Feminino
+      %td{:bgcolor => "#F1F1F1"} Estado civil:
+      %td
+        - case @quote_auto[:quote2][:perfil_estado_civil]
+        - when "0" 
+          Solteiro(a)
+        - when "1" 
+          Casado(a)
+        - when "2" 
+          União Estável (minimo 2 anos)
+        - when "3" 
+          Separado(a)
+        - when "4" 
+          Divorciado(a)
+        - when "5" 
+          Viúvo(a)
+      %td{:bgcolor => "#F1F1F1"} Data da 1ª habilitação::
+      %td= @quote_auto[:quote2][:perfil_date_licence]
+    %tr
+      %td{:bgcolor => "#F1F1F1"} Escolaridade:
+      %td
+        - case @quote_auto[:quote2][:perfil_escolaridade]
+        - when "0" 
+          Fundamental
+        - when "1" 
+          Médio
+        - when "2" 
+          Superior
+      %td{:bgcolor => "#F1F1F1"} Estuda atualmente?
+      %td 
+        -case @quote_auto[:quote2][:perfil_estuda]
+        - when "0"
+          Sim
+        - when "1"
+          Não
+      %td{:bgcolor => "#F1F1F1"} Qual o tipo de residência?
+      %td
+        -case @quote_auto[:quote2][:perfil_tipo_residencia]
+        - when "0"
+          Apartamento
+        - when "1"
+          Apartamento (cond. fechado)
+        - when "2"
+          Casa
+        - when "3"
+          Casa (cond. fechado)
+    %tr
+      %td{:bgcolor => "#F1F1F1"} Situação da residência
+      %td
+        -case @quote_auto[:quote2][:perfil_situacao_residencia]
+        - when "0"
+          Própria
+        - when "1"
+          Alugada
+      %td{:bgcolor => "#F1F1F1"} Número da CNH
+      %td= @quote_auto[:quote2][:perfil_cnh]
+      %td{:bgcolor => "#F1F1F1"} Garagem fechada?
+      %td
+        = @quote_auto[:quote2][:perfil_garagem_residencia] == "0" ? nil : "Na residência"
+        = @quote_auto[:quote2][:perfil_garagem_trabalho] == "0" ? nil : "No trabalho"
+        = @quote_auto[:quote2][:perfil_garagem_escola] == "0" ? nil : "Na escola"
+        = @quote_auto[:quote2][:perfil_garagem_nao_trabalha] == "0" ? nil : "Não trabalha ou não utiliza para ir ao trabalho"
+        = @quote_auto[:quote2][:perfil_garagem_nao_estuda] == "0" ? nil : "Não estuda ou não utiliza para ir a escola/faculdade"
+        = @quote_auto[:quote2][:perfil_garagem_nao] == "0" ? nil : "Não possui garagem"
+    %tr
+      %td{:bgcolor => "#F1F1F1"} Quantidade de veículos:
+      %td= @quote_auto[:quote2][:perfil_qtde_veiculos]
+      %td{:bgcolor => "#F1F1F1"} Quilometragem mensal:
+      %td{:colspan => 4}= @quote_auto[:quote1][:km_mes]
+    %tr
+      %th{:colspan => 6} OUTROS CONDUTORES
+    %tr
+      %td{:colspan => 6} 1º condutor
+    %tr
+      %td{:bgcolor => "#F1F1F1"} Nome:
+      %td= @quote_auto[:quote3][:condutor_1_name]
+      %td{:bgcolor => "#F1F1F1"} Data de nascimento:
+      %td= @quote_auto[:quote3][:condutor_1_birth]
+      %td{:bgcolor => "#F1F1F1"} Sexo:
+      %td
+        - case @quote_auto[:quote3][:condutor_1_sex]
+        - when "0"
+          Masculino
+        - when "1"
+          Feminino
+    %tr
+      %td{:bgcolor => "#F1F1F1"} Data da 1ª habilitação:
+      %td= @quote_auto[:quote3][:condutor_1_date_licence]
+      %td{:bgcolor => "#F1F1F1"} Estado civil:
+      %td
+        - case @quote_auto[:quote3][:condutor_1_estado_civil]
+        - when "0" 
+          Solteiro(a)
+        - when "1" 
+          Casado(a)
+        - when "2" 
+          União Estável (minimo 2 anos)
+        - when "3" 
+          Separado(a)
+        - when "4" 
+          Divorciado(a)
+        - when "5" 
+          Viúvo(a)
+      %td{:bgcolor => "#F1F1F1"} Grau de parentesco:
+      %td
+        - case @quote_auto[:quote3][:condutor_1_grau_parentesco]
+        - when "0"
+          Cônjuge
+        - when "1"
+          Filhos
+        - when "2"
+          Pais
+        - when "3"
+          Outros
+    %tr
+      %td{:colspan => 6} 2º condutor
+    %tr
+      %td{:bgcolor => "#F1F1F1"} Nome:
+      %td= @quote_auto[:quote3][:condutor_2_name]
+      %td{:bgcolor => "#F1F1F1"} Data de nascimento:
+      %td= @quote_auto[:quote3][:condutor_2_birth]
+      %td{:bgcolor => "#F1F1F1"} Sexo:
+      %td
+        - case @quote_auto[:quote3][:condutor_2_sex]
+        - when "0"
+          Masculino
+        - when "1"
+          Feminino
+    %tr
+      %td{:bgcolor => "#F1F1F1"} Data da 1ª habilitação:
+      %td= @quote_auto[:quote3][:condutor_2_date_licence]
+      %td{:bgcolor => "#F1F1F1"} Estado civil:
+      %td
+        - case @quote_auto[:quote3][:condutor_2_estado_civil]
+        - when "0" 
+          Solteiro(a)
+        - when "1" 
+          Casado(a)
+        - when "2" 
+          União Estável (minimo 2 anos)
+        - when "3" 
+          Separado(a)
+        - when "4" 
+          Divorciado(a)
+        - when "5" 
+          Viúvo(a)
+      %td{:bgcolor => "#F1F1F1"} Grau de parentesco:
+      %td
+        - case @quote_auto[:quote3][:condutor_2_grau_parentesco]
+        - when "0"
+          Cônjuge
+        - when "1"
+          Filhos
+        - when "2"
+          Pais
+        - when "3"
+          Outros

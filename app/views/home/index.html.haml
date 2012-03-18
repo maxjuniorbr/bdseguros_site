@@ -1,66 +1,99 @@
-#home
-  .col-left
-    #main
-      #mini-features
-        %img.home-icon{:alt => "Portáteis", :border => "0", :src => "../assets/mini_portatil.png", :title => "Portáteis"}
-        .feature
-          %h3 Seguro de Equipamentos Portáteis
-          %p Se você locomove-se com frequência e não pode correr o risco de ficar sem acesso a sua principal ferramenta de trabalho e comunicação, entre em contato conosco e conheça mais este produto.
-          %a
-            =link_to "Leia mais", budget_portatil_path
-        .hr
-        %img.home-icon{:alt => "Vida Individual", :border => "0", :src => "../assets/mini_vida.png", :title => "Vida Individual"}
-        .feature
-          %h3 Seguro de Vida Individual
-          %p Um bom seguro de vida é aquele que se preocupa com você também no presente. Ao contratar este produto você garante a sua tranquilidade e a proteção de quem mais ama, agora e no futuro.
-          %a
-            =link_to "Leia mais", budget_other_path(:type => "vida")
-        .hr
-        %img.home-icon{:alt => "Condomínio", :border => "0", :src => "../assets/mini_condominio.png", :title => "Condomínio"}
-        .feature
-          %h3 Seguro Condomínio
-          %p Sob medida para condomínios verticais residenciais, comerciais, mistos, de escritórios e/ou consultórios, flats e apart-hotéis, bem como condomínios residenciais horizontais. Com preço acessível e pagamento facilitado, ele oferece inúmeras vantagens.
-          %a
-            =link_to "Leia mais", budget_other_path(:type => "condominio")
-        .hr
-  .col-right
-    #column-right
-      #content-right
-        %h4#budget Cotação
-        %ul
-          %li 
-            =link_to "- Automóvel", budget_auto_path
-          %li 
-            =link_to "- Equipamentos Portáteis", budget_portatil_path
-          %li 
-            =link_to "- Outros ramos", budget_other_path
-        %h4#links Link's úteis
-        %ul
-          %li 
-            %a{:href => "http://www.fipe.org.br/web/indices/veiculos/introducao.aspx", :target => "_blank"} - Tabela FIPE
-          %li 
-            %a{:href => "http://www.sincor.org.br", :target => "_blank"} - Sincor
-          %li 
-            %a{:href => "http://www.susep.gov.br/", :target => "_blank"} - Susep
-          %li 
-            %a{:href => "http://servicos.uol.com.br/detrans.jhtm", :target => "_blank"} - Detrans do Brasil
-          %li 
-            %a{:href => "http://www.denatran.gov.br", :target => "_blank"} - Denatran
-          %li
-            %a{:href => "http://www.dprf.gov.br/", :target => "_blank"} - Polícia Rodoviária Federal
-        %h4#tips Perguntas Frequentes
-        %ul
-          %li 
-            %a{:href => "#"} - O que é perda total do veículo?
-          %li 
-            %a{:href => "#"} - O que é Carro Reserva?
-          %li 
-            %a{:href => "#"} - O que é danos a terceiros?
-          %li 
-            %a{:href => "#"} - O que é CASCO?
-          %li 
-            %a{:href => "#"} - Outras perguntas...
+#banner_principal
+  %table{:cellpadding => "0", :cellspacing => "0", :style => "width:500px; margin:10px 0 0 15px"}
+    %tbody
+      %tr
+        %td{:style => "color:#FFFFFF; font-size:30pt; font-family:Tahoma,Arial; letter-spacing:-2px; height:90px; font-weight:bold"}
+          Bornia e Dianin Corretora de Seguros.
+      %tr
+        %td{:style => "color:#D1F5FF; font-size:12pt; font-weight:normal; line-height:170%; height:145px;"}
+          Com mais de 20 anos de experiência no mercado somos uma empresa sólida e respeitada,
+          atuando nos mais diversos ramos de seguros sempre buscamos o melhor produto para o
+          cliente apresentando preço justo, qualidade e um excelente atendimento.
+      %tr
+        %td{:style => "height:45px; padding-top:5px"}
+          %a{:href => "#{insurance_path}"}
+            %img.transparent{:alt => "Nossos seguros", :src => "../assets/bt_nseguros.jpg"}/
+          %a{:href => "", :onclick => "alert('Sistema em desenvolvimento.');return false;"}
+            %img.transparent{:alt => "Contatos", :src => "../assets/bt_contato.jpg"}/
+#vantagens
+  %div{:style => "float:left; width:210px; margin:45px 0 0 110px; font-size:8pt; color:#7E898B; font-weight:normal; display:inline"}
+    %a{:href => "#{default_quote_path}"}
+      %p{:style => "font-size:15pt; letter-spacing:-1px; padding-bottom:5px; font-weight:bold;"} Cotação
+      %p{:style => "color:#69777B"} Confira nossas soluções para você, sua família ou empresa.
+  %div{:style => "float:left; width:210px; margin:45px 0 0 110px; font-size:8pt; color:#7E898B; font-weight:normal; display:inline"}
+    %a{:href => "", :onclick => "alert('Sistema em desenvolvimento.');return false;" }
+      %p{:style => "font-size:15pt; letter-spacing:-1px; padding-bottom:5px; font-weight:bold;"} Link's úteis
+      %p{:style => "color:#69777B"} Acesso aos principais serviços e seguradoras.
+  %div{:style => "float:left; width:210px; margin:45px 0 0 110px; font-size:8pt; color:#7E898B; font-weight:normal; display:inline"}
+    %a{:href => "", :onclick => "alert('Sistema em desenvolvimento.');return false;"}
+      %p{:style => "font-size:15pt; letter-spacing:-1px; padding-bottom:5px; font-weight:bold;"} Perguntas frequentes
+      %p{:style => "color:#69777B"} Consulte aqui as principais perguntas e respostas sobre seguro.
+#conteudo
+  #content_left{:style => "background-image: url('../assets/bg_login.jpg'); margin: 21px 0 0 15px; background-repeat: no-repeat; height: 200px"}
+    = form_tag do
+      %table{:cellpadding => "0", :cellspacing => "0", :style => "width:425px; margin-top:10px"}
+        %tbody
+          %tr
+            %td{:colspan => "2", :style => "height:20px; font-size:18pt; font-weight:bold; color:#4B4B4B; letter-spacing:-1px; text-align: right;"}
+              Central do Segurado
+          %tr
+            %td{:style => "height:65px; font-size:11pt; color:#727272; font-weight:normal; line-height:145%;padding-left: 175px;"}
+              Se você já é um cliente BDSeguros acesse sua área exclusiva:
+          %tr
+            %td{:style => "height:35px;padding-left: 175px;"}
+              = text_field_tag :login, "insira seu login", :style => "color:#ADB4B4; font-size:11pt; width:230px; height:30px; padding:4px;"
+          %tr
+            %td{:style => "height:50px;padding-left: 175px;"}
+              = password_field_tag :password, "123456", :style => "color:#ADB4B4; font-size:11pt; width:157px; height:30px; padding:4px;"
+              = submit_tag :acessar, :class => "button", :id => "acessar"
+  #content_right
+    %a{:href => "#{insurance_path}#equipamentos_portateis"}
+      %p{:style => "font-size:18pt; font-weight:bold; letter-spacing:-1px; padding-bottom:5px;"}
+        Seguro de Equipamentos Portáteis
+      %p{:style => "padding-top:7px; color: #69777B;"}
+        Você já pensou em contratar um seguro para seu notebook, smartphone (iPhone, BlackBerry, 
+        Android entre outros), iPad ou outros modelos de tablets, e até mesmo câmeras 
+        fotográficas e filmadoras e assim, garantir a reposição do equipamento no caso de danos 
+        ou sinistros?
+      %br/
+    %a{:href => "#{insurance_path}#vida"}
+      %p{:style => "font-size:18pt; font-weight:bold; letter-spacing:-1px; padding-bottom:5px;"}
+        Seguro de Vida Individual
+      %p{:style => "padding-top:7px; color: #69777B;"}
+        Um bom seguro de vida é aquele que se preocupa com você também no presente.
+        Ao contratar este produto você garante a sua tranquilidade e a proteção de quem mais ama, 
+        agora e no futuro.
+      %br/
+    %a{:href => "#{insurance_path}#condominio"}
+      %p{:style => "font-size:18pt; font-weight:bold; letter-spacing:-1px; padding-bottom:5px;"}
+        Seguro Condomínio
+      %p{:style => "padding-top:7px; color: #69777B;"}
+        O seguro condomínio é ideal para você que gosta de acumular vantagens e não problemas. 
+        Além de ser simples de contratar, ele é completo, porque oferece coberturas que protegem 
+        o condomínio, o síndico e os colaboradores, além de serviços emergenciais gratuitos, 
+        preços e condições de pagamentos vantajosos.
+      %br/
 :javascript
-  $(document).ready(function(){
-    $('.home').css("background-color", "#098FAF");
+  $(document).ready(function () {
+    $("#pagina_inicial").css("color", "#FFF");
+    $.browser.chrome = /chrome/.test(navigator.userAgent.toLowerCase());
+    if ($.browser.mozilla) {
+      $("#password").css("width", "146px");
+    } else if ($.browser.msie) {
+      if ($.browser.version >= 8) {
+        $("#password").css("width", "157px");
+      }
+      else {
+        $("#password").css("width", "131px");
+      }
+    } else if ($.browser.chrome) {
+      $("#password").css("width", "157px");
+    } else {
+      $("#password").css("width", "154px");
+    }
+  });
+
+  $("#acessar").click(function () {
+    alert("Sistema em desenvolvimento.");
+    return false;
   });

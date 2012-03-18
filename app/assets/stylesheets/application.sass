@@ -1,22 +1,36 @@
+/*----------DEFINIÇÕES-GERAIS
 *
   margin: 0
   padding: 0
-  font-family: Ubuntu, "UbuntuRegular", sans-serif
+  outline: 0
 
-ul
+img
+  border: 0 none
+
+.clear
+  clear: both
+
+.step_quote  
+  margin: 10px 0 20px 10px
   li
     list-style: none
-  list-style: none
+    padding: 20px 5px 5px 5px 
+    span
+      background: url('../assets/step_bg.jpg') top left no-repeat
+      vertical-align: middle
+      color: white
+      font-size: 18pt
+      display: inline-block
+      width: 29px
+      height: 28px
+      text-align: center
+      margin: 0 7px 0 0
+      padding: 1px 4px 0 0
 
-a
-  &:link, &:visited, &:hover, &:active
-    color: #000000
-    text-decoration: none
-
-div.hr
-  background: url(hr.png) repeat-x top left
-  height: 1px
-  margin: 15px 0
+.button
+  padding: 4px
+  height: 38px
+  font-size: 12pt
 
 label.error
   color: red
@@ -24,273 +38,221 @@ label.error
   padding-left: 5px
   vertical-align: middle
 
-#message
-  border: 1px solid green
-  font-size: 14px
-  padding: 0 5px 0 5px
+/*----------LINKS-CLASSES
+a
+  color: #0291C9
+  text-decoration: none
+  &:hover
+    color: #0291C9
+    text-decoration: underline
 
-#wrapper
-  min-height: 80%
-  height: auto !important
-  height: 100%
-  background: #F6F6F6
-  position: relative
+.transparent:hover
+  filter: alpha(opacity = 80)
+  opacity: 0.8
+  -moz-opacity: 0.8
+  zoom: 1
 
-#header
-  background: none repeat scroll 0 0 white
-  height: 98px
-  position: relative
-  z-index: 2
+/*----------LAYOUT
 
-#header .wrapper
-  width: 950px
-  padding-top: 10px
-  position: relative
-
-#header #logo
-  float: left
-
-#header .header_menu
-  float: right
-  position: relative
-  z-index: 1
-  padding-top: 15px
-
-.wrapper
-  width: 950px
+#wrap
+  width: 990px
   margin: 0 auto
+  height: 100%
 
-.menu
-  background: #0970A0 none
-  height: 48px
-  border-bottom: 1px solid #098FAF
-
-.menu ul
-  background: url(menu_delimetr.png) no-repeat 100% 0
-  padding: 0 2px 0 0
-  overflow: hidden
-  height: 48px
+#topo
   float: left
+  width: 990px
+  height: 110px
 
-.menu li
-  line-height: 48px
+#menu
   float: left
-  background: url(menu_delimetr.png) no-repeat 0 0
-  padding: 0 0 0 1px
-
-.menu li a
-  color: white
-  display: block    
-  font-size: 11px
-  font-weight: normal
-  height: 48px
-  line-height: 48px
-  padding: 0 25px
-  text-decoration: none
-  text-transform: uppercase
-
-// Slider
-#slider-wrapper
-  background: #0970A0 none
-  height: 115px
-
-#slider-box
-  width: 950px
-  height: 135px
-  margin: 0 auto  
-
-#sliders div
-  width: 950px
-  height: 115px
-
-.bx-pager
-  text-align: center
-
-.bx-pager a
-  font-size: 10px
-  color: #CCCCCC
-  padding: 0 10px
-  line-height: 25px
-
-// Footer
-#footer
-  margin: 0px auto 0
-  height: 130px
-  background-color: #F6F6F6
-  min-width: 950px
-  border-top: 1px solid #BEBEBE
-  clear: both
-
-#footer .wrapper
-  width: 950px
-  padding: 10px 0 0
-
-#footer-menu
-  position: relative
-
-#footer-menu > li
-  width: 190px
-  float: left
-
-#footer-menu > li > h4
-  display: block
-  height: 19px
-  margin: 15px 0 5px 0
-  background-repeat: no-repeat
-  background-position: left top
-  font-size: 14px
-
-#footer-menu ul li > a
-  font-family: Arial
-  font-size: 12px
-  color: #666
-  text-decoration: none
-  font-weight: normal
-
-#footer-menu ul li > a:hover
-  text-decoration: underline
-
-#copyright
-  clear: both
-  font-size: 11px
-  padding-top: 10px
-  text-align: center
-  color: #CCCCCC
-
-// Home
-#home
-  width: 940px
-  margin: 50px auto
-
-.col-left
-  float: left
-
-.col-right
-  float: right
-
-#main
-  width: 570px
-
-#mini-features img.home-icon
-  float: left
-  padding: 0
-
-#home .feature
-  margin-left: 65px
-
-#home .feature h3
-  font-size: 14px
-  font-weight: normal
-  text-transform: uppercase
-
-#home .feature h4
-  font-size: 12px
+  height: 39px
+  font-size: 9pt
   font-weight: bold
-
-#home .feature p
-  font-size: 13px
-  line-height: 20px
-  padding: 10px 0
-  text-align: justify
-
-#home .feature a
-  font-size: 12px
-  color: #0970A0
-  text-decoration: none
-
-#home .feature a:hover
-  font-size: 12px
-  text-decoration: underline
-  color: #0970A0
-
-#column-right
-  width: 300px
-  overflow: hidden
-
-#content-right
-  padding: 10px
-  border-left: 1px solid #CCCCCC
-
-#content-right h4#tips
-  background: url(ico-question.png) no-repeat left 3px
-  font-size: 12px
-  font-weight: normal
-  padding-left: 30px
-  text-transform: uppercase
-  border-bottom: 1px dotted #CCCCCC
-  line-height: 30px
-
-#content-right h4#links
-  background: url(ico-link.png) no-repeat left 3px
-  font-size: 12px
-  font-weight: normal
-  padding-left: 30px
-  text-transform: uppercase
-  border-bottom: 1px dotted #CCCCCC
-  line-height: 30px
-
-#content-right h4#budget
-  background: url(ico-budget.png) no-repeat left 3px
-  font-size: 12px
-  font-weight: normal
-  padding-left: 30px
-  text-transform: uppercase
-  border-bottom: 1px dotted #CCCCCC
-  line-height: 30px
-
-#content-right ul
-  clear: both
-  padding: 5px 0
-
-#content-right ul li
-  padding: 5px 0 0 0
-  line-height: 20px
-  font-weight: bold
-  font-size: 11px
-
-#content-right ul li a
-  color: #0970A0
-
-#content-right ul li a:hover
-  color: #636363
-
-// Budget
-.img-choice4
-  padding-top: 20px
-  float: left
-  width: 105px
-
-// Budget-auto
-#home .col-left #main h2
-  font-weight: normal
-  font-size: 18px
-
-#home .col-left #main p
-  font-size: 13px
-  line-height: 20px
-  padding: 10px 0
-
-#home .col-left #main ul li
-  font-size: 13px
-  padding: 5px 0 0 20px
-
-#home .col-left #main table
-  font-size: 12px
   width: 100%
-  color: #555555
+  a
+    color: #7ABDDF
+    text-decoration: none
+    &:hover
+      color: #FFFFFF
+      text-decoration: none
 
-#home .col-left #main table tr th
-  line-height: 25px
-  text-align: left
-  background-color: #FFFFFF
-  border: 1px solid #DDDDDD
+#banner_principal
+  float: left
+  width: 990px
+  height: 345px
 
-#home .col-left #main table tr td
-  line-height: 25px
-  font-weight: bold
-  background-color: #F1F1F1
-  border: 1px solid #DDDDDD
+#conteudo
+  float: left
+  margin-bottom: 25px
 
-.alignright
+#rodape
+  float: left
+  width: 100%
+  border-top: 1px solid #EEE
+  height: 100px
+  font-size: 11pt
+  color: #61717C
+  font-weight: normal
+  padding-top: 17px
+  line-height: 165%
+  background-color: #F0F0F0
+
+#content_right
   float: right
-  margin-left: 10px
+  width: 470px
+  font-size: 12pt
+  color: #61717C
+  margin: 30px 0 0 15px
+  font-weight: normal
+  line-height: 170%
+  a
+    color: #4B4B4B
+    text-decoration: none
+    &:hover
+      color: #0291C9
+      text-decoration: none
+
+#content_left
+  float: left    
+  width: 470px
+  font-size: 12pt
+  color: #61717C  
+  font-weight: normal
+  line-height: 170%
+  display: inline
+  a
+    color: #4B4B4B
+    text-decoration: none
+    &:hover
+      color: #0291C9
+      text-decoration: none
+  input[type="text"], input[type="password"]
+    color: #61717C
+    font-size: 12pt
+    border: 1px solid #AAA
+    -moz-border-radius: 5px
+    -webkit-border-radius: 5px
+    border-radius: 5px
+    padding: 10px
+
+  select
+    background-color: transparent
+    color: #61717C
+    font-size: 12pt
+    border: 1px solid #AAA
+    -moz-border-radius: 5px
+    -webkit-border-radius: 5px
+    border-radius: 5px
+    padding: 9px
+
+/*----------PAGINA-INICIAL
+#vantagens
+  float: left
+  width: 990px
+  height: 131px
+  line-height: 110%
+  a
+    color: #4B4B4B
+    text-decoration: none
+    &:hover
+      color: #0291C9
+      text-decoration: none
+
+#content
+  float: left  
+  background-repeat: no-repeat
+  width: 990px
+  font-size: 12pt
+  color: #61717C  
+  font-weight: normal
+  line-height: 170%
+  display: inline
+  a
+    color: #4B4B4B
+    text-decoration: none
+    &:hover
+      color: #0291C9
+      text-decoration: none
+
+/*----------TOOLTIP
+#tiptip_holder
+  display: none
+  position: absolute
+  top: 0
+  left: 0
+  z-index: 99999
+  &.tip_top
+    padding-bottom: 5px
+  &.tip_bottom
+    padding-top: 5px
+  &.tip_right
+    padding-left: 5px
+  &.tip_left
+    padding-right: 5px
+
+#tiptip_content
+  font-size: 12px
+  color: #fff
+  text-shadow: 0 0 2px #000
+  padding: 4px 8px
+  border: 1px solid rgba(255, 255, 255, 0.25)
+  background-color: black
+  border-radius: 3px
+  -webkit-border-radius: 3px
+  -moz-border-radius: 3px
+  box-shadow: 0 0 3px #555
+  -webkit-box-shadow: 0 0 3px #555
+  -moz-box-shadow: 0 0 3px #555
+
+#tiptip_arrow, #tiptip_arrow_inner
+  position: absolute
+  border-color: transparent
+  border-style: solid
+  border-width: 6px
+  height: 0
+  width: 0
+
+#tiptip_holder
+  &.tip_top #tiptip_arrow
+    border-top-color: #fff
+    border-top-color: rgba(255, 255, 255, 0.35)
+  &.tip_bottom #tiptip_arrow
+    border-bottom-color: #fff
+    border-bottom-color: rgba(255, 255, 255, 0.35)
+  &.tip_right #tiptip_arrow
+    border-right-color: #fff
+    border-right-color: rgba(255, 255, 255, 0.35)
+  &.tip_left #tiptip_arrow
+    border-left-color: #fff
+    border-left-color: rgba(255, 255, 255, 0.35)
+  &.tip_top #tiptip_arrow_inner
+    margin-top: -7px
+    margin-left: -6px
+    border-top-color: rgb(25, 25, 25)
+    border-top-color: rgba(25, 25, 25, 0.92)
+  &.tip_bottom #tiptip_arrow_inner
+    margin-top: -5px
+    margin-left: -6px
+    border-bottom-color: rgb(25, 25, 25)
+    border-bottom-color: rgba(25, 25, 25, 0.92)
+  &.tip_right #tiptip_arrow_inner
+    margin-top: -6px
+    margin-left: -5px
+    border-right-color: rgb(25, 25, 25)
+    border-right-color: rgba(25, 25, 25, 0.92)
+  &.tip_left #tiptip_arrow_inner
+    margin-top: -6px
+    margin-left: -7px
+    border-left-color: rgb(25, 25, 25)
+    border-left-color: rgba(25, 25, 25, 0.92)
+
+@media screen and (-webkit-min-device-pixel-ratio:0)
+  #tiptip_content
+    padding: 4px 8px 5px 8px
+    background-color: rgba(45, 45, 45, 0.88)
+  #tiptip_holder
+    &.tip_bottom #tiptip_arrow_inner
+      border-bottom-color: rgba(45, 45, 45, 0.88)
+    &.tip_top #tiptip_arrow_inner
+      border-top-color: rgba(20, 20, 20, 0.92)

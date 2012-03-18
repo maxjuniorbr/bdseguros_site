@@ -5,88 +5,63 @@
     = stylesheet_link_tag    "application"
     = javascript_include_tag "application"
     = csrf_meta_tags
-  %body
-    #wrapper
-      #header
-        .wrapper
-          %a#logo{:href => "http://bdseguros.com.br/"}
-            %img{:alt => "BDSeguros", :border => "0", :src => "../assets/logo.png", :title => "BDSeguros"}
-          .header_menu
-            %img{:alt => "Telefone", :border => "0", :src => "../assets/phone.png", :title => "Telefone (44) 3233-2184 ou (44) 3232-1896"}
-      .menu
-        .wrapper
-          %ul
-            %li 
-              %a{:href => "/", :class => "home"} Home
-            %li 
-              %a{:href => "#"} Quem somos
-            %li 
-              %a{:href => "#"} Seguros
-            %li 
-              %a{:href => "#"} Sinistros
-            %li 
-              %a{:href => "#"} Seguradoras            
-            %li 
-              %a{:href => "/cotacao", :class => "cotacao"} Cotação
-            %li 
-              %a{:href => "#"} Glossário
-            %li 
-              %a{:href => "#"} Contato
-      #slider-wrapper
-        #slider-box
-          #sliders
-            %div
-              =link_to image_tag("../assets/slide_auto.png", {:alt => "Seguro Automóvel", :border => "0", :title => "Seguro Automóvel"}), budget_auto_path
-            %div
-              =link_to image_tag("../assets/slide_casa.png", {:alt => "Seguro Residência", :border => "0", :title => "Seguro Residência"}), "#"
-            %div
-              =link_to image_tag("../assets/slide_emp.png", {:alt => "Seguro Empresa", :border => "0", :title => "Seguro Empresa"}), "#"
-    = yield
-    #footer
-      .wrapper
-        %ul#footer-menu
-          %li
-            %h4 Seguros
-            %ul
-              %li
-                %a{:href => "#"} Para você ou empresa
-          %li
-            %h4 Sinistros
-            %ul
-              %li
-                %a{:href => "#"} Atendimento a sinistros
-          %li
-            %h4 Seguradoras
-            %ul
-              %li
-                %a{:href => "#"} Nossos parceiros
-          %li
-            %h4 Outros links
-            %ul
-              %li
-                %a{:href => "#"} Quem somos
-              %li
-                =link_to "Cotação", budget_path
-              %li
-                %a{:href => "#"} Glossário
-          %li
-            %h4 Contato
-            %ul
-              %li
-                %a{:href => "#"} Fale conosco
-            %ul
-              %li
-                %a{:href => "#"} Trabalhe conosco
-      #copyright
-        Copyright © 1998-2012 Bornia e Dianin Corretora de Seguros. Todo o conteúdo deste site é de uso exclusivo.
-:javascript
-  $(document).ready(function(){
-    $('#sliders').bxSlider({
-      randomStart: true,
-      mode: 'fade',
-      pager: true,
-      auto: true,
-      pause: 5000,
-      controls: false
-    });
-  });
+  %body{:style => "#{@body = @body.nil? ? '' : @body}"}
+    #wrap
+      #topo        
+        %img{:align => "left", :alt => "BDSeguros", :src => "../assets/logo.jpg", :style => "margin-top:15px;", :title => "BDSeguros"}
+          %img{:align => "right", :alt => "Telefone (44) 3233-2184 ou (44) 3232-1896", :src => "../assets/phone.jpg", :style => "margin-top:30px;", :title => "Telefone (44) 3233-2184 ou (44) 3232-1896"}
+      #menu
+        %table{:cellpadding => "0", :cellspacing => "0", :style => "height:39px"}
+          %tbody
+            %tr
+              %td{:style => "padding:0 13px 0 15px"}
+                = link_to "Página Inicial", root_path, :id => "pagina_inicial"
+              %td{:style => "padding:0 13px 0 13px"}
+                = link_to "Seguros", insurance_path, :id => "seguros"
+              %td{:style => "padding:0 13px 0 13px"}
+                = link_to "Sinistros", root_path, :id => "sinistros", :onclick => "alert('Sistema em desenvolvimento.');return false;"
+              %td{:style => "padding:0 13px 0 13px"}
+                = link_to "Seguradoras", root_path, :id => "seguradoras", :onclick => "alert('Sistema em desenvolvimento.');return false;"
+              %td{:style => "padding:0 13px 0 13px"}
+                = link_to "Cotação", default_quote_path, :id => "cotacao"
+              %td{:style => "padding:0 13px 0 13px"}
+                = link_to "Perguntas frequentes", root_path, :id => "perguntas_frequentes", :onclick => "alert('Sistema em desenvolvimento.');return false;"
+              %td{:style => "padding:0 13px 0 13px"}
+                = link_to "Fale Conosco", root_path, :id => "fale_conosco", :onclick => "alert('Sistema em desenvolvimento.');return false;"
+      = yield
+    #rodape
+      #wrap
+        %table{:width => "100%"}
+          %tbody
+            %tr
+              %td{:style => "vertical-align: top;width: 198px;"}
+                %strong
+                  Seguros
+                %br/
+                = link_to "Para você ou sua empresa", insurance_path, :style => "font-size: 12px;"
+              %td{:style => "vertical-align: top;width: 198px;"}
+                %strong
+                  Sinistros
+                %br/
+                = link_to "Atendimento a sinistros", root_path, :onclick => "alert('Sistema em desenvolvimento.');return false;", :style => "font-size: 12px;"
+              %td{:style => "vertical-align: top;width: 198px;"}
+                %strong
+                  Seguradoras
+                %br/
+                = link_to "Nossos parceiros", root_path, :onclick => "alert('Sistema em desenvolvimento.');return false;", :style => "font-size: 12px;"
+              %td{:style => "vertical-align: top;width: 198px;"}
+                %strong
+                  Outros links
+                %br/
+                = link_to "Cotação", default_quote_path, :style => "font-size: 12px;"
+                %br/
+                = link_to "Perguntas frequentes", root_path, :onclick => "alert('Sistema em desenvolvimento.');return false;", :style => "font-size: 12px;"
+              %td{:style => "vertical-align: top;width: 198px;"} 
+                %strong
+                  Contato
+                %br/
+                = link_to "Fale conosco", root_path, :onclick => "alert('Sistema em desenvolvimento.');return false;", :style => "font-size: 12px;"
+                %br/
+                = link_to "Trabalhe conosco", root_path, :onclick => "alert('Sistema em desenvolvimento.');return false;", :style => "font-size: 12px;"
+        %p{:style => "text-align: center; font-size: 12px; color: #BBB;"}
+          Copyright © 2011-2012 Bornia e Dianin Corretora de Seguros. Todo o conteúdo deste site é de uso exclusivo.

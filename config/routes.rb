@@ -1,20 +1,11 @@
 Bdsite::Application.routes.draw do
   root :to => 'home#index'
 
-  #Index new
-  match 'novo' => 'home#index_new', :as => 'index_new'
-
   #Insurance matchs
-  match 'novo/seguros' => 'home#insurance', :as => 'insurance'
+  match 'seguros' => 'home#insurance', :as => 'insurance'
 
   #Quotes match
-  match 'novo/cotacao' => 'quotes#default_quote', :as => 'default_quote'
-
-  match 'cotacao' => 'home#budget', :as => 'budget'
-  match 'cotacao/automovel' => 'home#budget_auto', :as => 'budget_auto'
-  match 'cotacao/portatil' => 'home#budget_portatil', :as => 'budget_portatil'
-  match 'cotacao/outros' => 'home#budget_other', :as => 'budget_other'
-  
+  match 'cotacao' => 'quotes#default_quote', :as => 'default_quote'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
