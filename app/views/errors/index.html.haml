@@ -1,0 +1,11 @@
+#banner_principal
+  %table{:cellpadding => "0", :cellspacing => "0", :style => "width:500px; margin:10px 0 0 15px"}
+    %tbody
+      %tr
+        %td{:style => "color:#FFFFFF; font-size:25pt; font-family:Tahoma,Arial; letter-spacing:-2px; height:90px; font-weight:bold;"}
+          - if params[:nojs] == "1"
+            Desculpe-nos, para uma melhor experiência de navegação é necessário que o javascript do seu navegador esteja habilitado. Caso não saiba como fazê-lo contate o administrador de sua rede.
+          - elsif params[:oldversion] == "1"  
+            Desculpe-nos, este site não suporta versões antigas de navegadores. Para uma melhor experiência atualize seu navegador.
+          - else
+            Teste

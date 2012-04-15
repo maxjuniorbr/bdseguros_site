@@ -4,7 +4,6 @@ class QuotesMailer < ActionMailer::Base
 
   def automobile(quote_auto)
     @quote_auto = quote_auto            
-      
-    mail :to => "cotacao@bdseguros.com.br", :subject => "Pedido de cotação AUTO: " + @quote_auto[:default_quote][:name]
+    mail :to => "cotacao@bdseguros.com.br", :subject => "Pedido de cotação AUTO: " + @quote_auto[:name]
   end
 end

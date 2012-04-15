@@ -1,0 +1,582 @@
+%noscript
+  :css
+    html {
+      display: none;
+    } 
+  %meta{:content => "0.0;url=erros?nojs=1", "http-equiv" => "refresh"}
+/[If IE 7]
+  %link{:href => "../assets/iehack.css", :media => "screen", :rel => "stylesheet", :type => "text/css"}
+#banner_principal
+  %table{:cellpadding => "0", :cellspacing => "0", :style => "width:500px; margin:10px 0 0 15px"}
+    %tbody
+      %tr
+        %td{:style => "color:#FFFFFF; font-size:30pt; font-family:Tahoma,Arial; letter-spacing:-2px; height:90px; font-weight:bold"}
+          Seguros para você e sua família.
+      %tr
+        %td{:style => "color:#D1F5FF; font-size:12pt; font-weight:normal; line-height:170%; height:145px"}
+          %p{:style => "margin-bottom: 10px"}
+            Confira as melhores condições de contratação selecionando um produto e
+            preenchendo o formulário abaixo.
+          %p{:style => "margin-bottom: 10px"}
+            Se desejar, entre em contato através de nossos telefones ou pelo nosso fale conosco.
+      %tr{:style => "display: none", :id => "bt_tproduto"}
+        %td{:style => "height:45px; padding-top:5px"}
+          %a{:href => "#{cotacao_path}"}
+            %img.transparent{:alt => "Solicite uma cotação", :src => "../assets/bt_tproduto.jpg"}/
+#conteudo
+  #content_left{:style => "margin-top: 30px"}
+    = form_for :quote, :url => cotacao_path, :html => {:id => "quote"} do |f|
+      %div{:id => "step_1"}
+        %p{:style => "font-size:18pt; font-weight:bold; letter-spacing:-1px; padding-bottom:5px; color: #4B4B4B"}
+          Para iniciar a simulação, preencha o formulário abaixo com os dados da pessoa que será segurada:
+        %br/
+        %p
+          Todos os campos abaixo são de preenchimento obrigatório.
+        %br/
+        %table{:border => "0", :style => "width: 470px;"}
+          %tr
+            %td{:colspan => "2", :style => "color:#4B4B4B; width: 230px;"}
+              %strong= f.label :name, "Nome completo"
+          %tr{:style => "vertical-align: middle;"}
+            %td{:colspan => "2"}
+              = f.text_field :name, :maxlength => 100, :style => "width: 429px", :class => "required"
+
+          %tr
+            %td{:style => "color:#4B4B4B; width: 230px;"}
+              %strong= f.label :birth, "Data de nascimento"
+            %td{:style => "color:#4B4B4B;"}
+              %strong= f.label :cpf, "CPF"
+          %tr{:style => "vertical-align: middle;"}
+            %td
+              = f.text_field :birth, :style => "width: 195px", :alt => "date", :class => "required"
+            %td
+              = f.text_field :cpf, :style => "width: 195px", :alt => "cpf", :class => "required"
+
+          %tr
+            %td{:style => "color:#4B4B4B;"}
+              %strong= f.label :phone_cell, "Telefone celular"
+            %td{:style => "color:#4B4B4B;"}
+              %strong= f.label :mail, "E-mail"
+          %tr{:style => "vertical-align: middle;"}
+            %td
+              = f.text_field :phone_cell, :style => "width: 195px", :alt => "phone", :class => "required"
+            %td
+              = f.text_field :mail, :maxlength => 100, :style => "width: 195px", :class => "required"
+
+          %tr
+            %td{:style => "color:#4B4B4B;"}
+              %strong= f.label :zip_home, "Cep residencial"
+            %td{:style => "color:#4B4B4B;"}
+              %strong= f.label :number_home, "Número da residência"
+          %tr{:style => "vertical-align: middle;"}
+            %td
+              = f.text_field :zip_home, :style => "width: 195px", :alt => "cep", :class => "required"
+            %td
+              = f.text_field :number_home, :maxlength => 30, :style => "width: 195px", :class => "required"
+
+          %tr
+            %td{:colspan => "2", :style => "color:#4B4B4B;"}
+              %strong= f.label :insurance_new, "O seguro é novo?"
+          %tr{:style => "vertical-align: middle;"}
+            %td{:colspan => "2"}
+              = f.select :insurance_new, options_for_select([["Sim", 0], ["Não", 1]]), {:prompt => "Selecione"}, {:style => "width: 451px", :class => "required"}
+
+          %tr
+            %td{:colspan => "2", :style => "color:#4B4B4B;"}
+              %strong= f.label :insurance_type, "Qual a modalidade do seguro?"
+          %tr{:style => "vertical-align: middle;"}
+            %td{:colspan => "2"}
+              = f.select :insurance_type, options_for_select([["Automóvel", "auto"]]), {:prompt => "Selecione"}, {:style => "width: 451px", :class => "required"}
+
+          %tr{:style => "vertical-align: middle; text-align: right;"}
+            %td{:colspan => "2", :style => "height: 60px;"}
+              = link_to "Iniciar simulação", "#", :class => "button_link", :onclick => "goStep(1, '#quote_city_circulation', 2); showRenew(); return false;"
+      %div{:id => "step_2_auto"}
+        %p{:style => "font-size:18pt; font-weight:bold; letter-spacing:-1px; padding-bottom:5px; color: #4B4B4B"}
+          Pedido de cotação de automóvel.
+        %br/
+        %p
+          Todos os campos abaixo são de preenchimento obrigatório.
+        %br/
+        %table{:border => "0", :style => "width: 470px;"}
+          %tr
+            %td{:colspan => "2", :style => "border-bottom: 1px solid #DDD;"}
+              Dados do veículo
+
+          %tr
+            %td{:colspan => "2", :style => "color:#4B4B4B;"}
+              %strong= f.label :city_circulation, "Cidade em que circula 85% do tempo"
+          %tr{:style => "vertical-align: middle;"}
+            %td{:style => "width: 232px;"}
+              = f.text_field :city_circulation, :maxlength => 50, :style => "width: 195px;", :class => "required"      
+            %td
+              = f.select :uf_circulation, options_for_select(@br_states), {:prompt => "Estado"}, {:style => "width: 215px;", :class => "required"}
+
+          %tr
+            %td{:style => "color:#4B4B4B; width: 230px;", :id => "column1"}
+              %strong= f.label :maker, "Marca"
+            %td{:style => "color:#4B4B4B;"}
+              %strong= f.label :model, "Modelo"
+          %tr{:style => "vertical-align: middle;"}
+            %td          
+              = f.text_field :maker, :maxlength => 50, :style => "width: 195px;", :class => "required"
+            %td
+              = f.text_field :model, :maxlength => 50, :style => "width: 195px;", :class => "required"
+
+          %tr
+            %td{:style => "color:#4B4B4B;"}
+              %strong= f.label :fuel, "Combustível"
+            %td{:style => "color:#4B4B4B;"}
+              %strong= f.label "Ano de fabricação"
+          %tr{:style => "vertical-align: middle;"}
+            %td          
+              = f.select :fuel, options_for_select([["Álcool e Gasolina (Flex)", 0], ["Álcool", 1], ["Gasolina", 2], ["Diesel", 3], ["Gás Natural", 4]]), {:prompt => "Selecione"}, {:class => "required", :style => "width: 217px"}
+            %td
+              = select_year(nil, {:start_year => 2012, :end_year => 1982, :prompt => "Selecione"}, {:name => "quote[year_maker]", :class => "required", :id => "quote_year_maker", :style => "width: 217px;"})
+
+          %tr
+            %td{:style => "color:#4B4B4B;"}
+              %strong= f.label "Ano do modelo"
+            %td{:style => "color:#4B4B4B;"}
+              %strong= f.label :zero, "Zero KM?"
+          %tr{:style => "vertical-align: middle;"}
+            %td          
+              = select_year(nil, {:start_year => 2013, :end_year => 1982, :prompt => "Selecione"}, {:name => "quote[year_model]", :class => "required", :id => "quote_year_model", :style => "width: 217px;"})
+            %td
+              = f.select :zero, options_for_select([["Sim", 0], ["Não", 1]]), {:prompt => "Selecione"}, {:class => "required", :style => "width: 217px;", :disabled => true}
+
+          %tr
+            %td{:style => "color:#4B4B4B;"}
+              %strong= f.label :alienado_finaciado, "É alienado ou financiado?"
+            %td{:style => "color:#4B4B4B;"}
+              %strong= f.label :kit_gas, "Possui kit-gás?"
+          %tr{:style => "vertical-align: middle;"}
+            %td          
+              = f.select :alienado_finaciado, options_for_select([["Sim", 0], ["Não", 1]]), {:prompt => "Selecione"}, {:class => "required", :style => "width: 217px;"}
+            %td
+              = f.select :kit_gas, options_for_select([["Sim", 0], ["Não", 1]]), {:prompt => "Selecione"}, {:class => "required", :style => "width: 217px;"}
+
+          %tr
+            %td{:style => "color:#4B4B4B;"}
+              %strong= f.label :proprietario_veiculo, "Proprietário do veículo"
+            %td{:style => "color:#4B4B4B;"}
+              %strong= f.label :anti_furto, "Sistema anti-furto"
+          %tr{:style => "vertical-align: middle;"}
+            %td          
+              = f.select :proprietario_veiculo, options_for_select([["Próprio", 0], ["Cônjuge", 1], ["Filhos", 2], ["Pais", 3], ["Outros", 4]]), {:prompt => "Selecione"}, {:class => "required", :style => "width: 217px;"}
+            %td
+              = f.select :anti_furto, options_for_select([["Não possui", 0], ["Sistema original de fábrica", 1], ["Bloqueador rádio frequência", 2], ["Corta ignição", 3], ["Pager", 4], ["Rastreador", 5], ["Trava Mul-T-Lock", 6], ["Trava carneiro", 7], ["Alarme comum", 8], ["Outros", 9]]), {:prompt => "Selecione"}, {:class => "required", :style => "width: 217px;"}
+
+          %tr
+            %td{:style => "color:#4B4B4B;"}
+              %strong= f.label :licence, "Placa (opcional)"
+            %td{:style => "color:#4B4B4B;"}
+              %strong= f.label :chassi, "Chassi (opcional)"
+          %tr{:style => "vertical-align: middle;"}
+            %td          
+              = f.text_field :licence, :style => "width: 195px;", :alt => "licence"
+            %td
+              = f.text_field :chassi, :maxlength => 30, :style => "width: 195px;"
+
+          %tr
+            %td{:style => "color:#4B4B4B;"}
+              %strong= f.label :renavam, "Renavam (opcional)"
+            %td{:style => "color:#4B4B4B;"}
+              %strong= f.label :km_mes, "Km médio mensal"
+          %tr{:style => "vertical-align: middle;"}
+            %td          
+              = f.text_field :renavam, :style => "width: 95px;"
+              = f.select :uf_circulation, options_for_select(@br_states), {:prompt => "Estado"}, {:style => "width: 95px;", :class => "required"}
+            %td
+              = f.text_field :km_mes, :maxlength => 30, :style => "width: 195px;", :alt => "integer", :class => "required" 
+
+          %tr{:class => "renew"}
+            %td{:style => "color:#4B4B4B;"}
+              %strong= f.label :actual_insurance, "Atual seguradora (opcional)"
+            %td{:style => "color:#4B4B4B;"}
+              %strong= f.label :actual_insurance_bonus, "Bônus atual (opcional)"
+          %tr{:class => "renew", :style => "vertical-align: middle;"}
+            %td          
+              = f.text_field :actual_insurance, :style => "width: 195px;"
+            %td          
+              = f.select :actual_insurance_bonus, options_for_select(0..20), {:prompt => "Selecione"}, {:style => "width: 217px"}
+              
+          %tr{:class => "renew"}
+            %td{:style => "color:#4B4B4B;"}
+              %strong= f.label :actual_insurance_certified, "Nº Apólice atual (opcional)"
+            %td{:style => "color:#4B4B4B;"}
+              %strong= f.label :actual_insurance_maturity, "Venc. do seguro (opcional)"
+          %tr{:class => "renew", :style => "vertical-align: middle;"}            
+            %td
+              = f.text_field :actual_insurance_certified, :maxlength => 30, :style => "width: 195px"
+            %td
+              = f.text_field :actual_insurance_maturity, :style => "width: 195px", :alt => "date"
+
+          %tr{:style => "vertical-align: middle; text-align: right;"}
+            %td{:colspan => "2", :style => "height: 60px;"}
+              = link_to "Voltar", "", :class => "button_link", :onclick => "goStep(0, '#quote_name', 1); return false;"
+              = link_to "Continuar", "", :class => "button_link", :onclick => "goStep(2, '#quote_relacao_cond_seg_prprio', 3); return false;"
+      %div{:id => "step_3_auto"}
+        %p{:style => "font-size:18pt; font-weight:bold; letter-spacing:-1px; padding-bottom:5px; color: #4B4B4B"}
+          Pedido de cotação de automóvel.
+        %br/
+        %p
+          Os dados complementares tem por objetivo identificar os riscos do seguro, 
+          as respostas devem ser verdadeiras podendo em caso de inverdade acarretar 
+          a redução total ou parcial do valor a ser indenização.
+        %br/
+        %p
+          Todos os campos abaixo são de preenchimento obrigatório.
+        %br/
+        %table{:border => "0", :style => "width: 470px;"}
+          %tr
+            %td{:colspan => "2", :style => "color:#4B4B4B;"}
+              %strong= f.label "Qual sua relação com o principal condutor?"
+          %tr{:id => "relacao_cond_seg", :style => "vertical-align: middle;"}
+            %td{:colspan => "2"}
+              = f.radio_button :relacao_cond_seg, "Próprio"
+              = f.label "Próprio"
+              = f.radio_button :relacao_cond_seg, "Cônjuge"
+              = f.label "Cônjuge"
+              = f.radio_button :relacao_cond_seg, "Filho"
+              = f.label "Filho"
+              = f.radio_button :relacao_cond_seg, "Outro"
+              = f.label "Outro"
+              = f.text_field :relacao_cond_seg_outro_name, :maxlength => 20, :disabled => "true", :style => "width: 161px;"
+
+          %tr
+            %td{:colspan => "2", :style => "border-bottom: 1px solid #DDD;"}
+              %br/
+              Dados do principal condutor
+
+          %tr
+            %td{:style => "color:#4B4B4B; width: 230px;", :id => "column1"}
+              %strong= f.label :perfil_name, "Nome"
+            %td{:style => "color:#4B4B4B;"}
+              %strong= f.label :perfil_cpf, "CPF"
+          %tr{:style => "vertical-align: middle;"}
+            %td{:style => "width: 232px;"}
+              = f.text_field :perfil_name, :maxlength => 50, :style => "width: 195px;", :class => "required"
+            %td
+              = f.text_field :perfil_cpf, :style => "width: 195px", :alt => "cpf", :class => "required"
+
+          %tr
+            %td{:style => "color:#4B4B4B; width: 230px;", :id => "column1"}
+              %strong= f.label :perfil_birth, "Data de nascimento"
+            %td{:style => "color:#4B4B4B;"}
+              %strong= f.label :perfil_sex, "Sexo"
+          %tr{:style => "vertical-align: middle;"}
+            %td          
+              = f.text_field :perfil_birth, :style => "width: 195px", :alt => "date", :class => "required"
+            %td
+              = f.select :perfil_sex, options_for_select([["Masculino", 0], ["Feminino", 1]]), {:prompt => "Selecione"}, {:style => "width: 217px;", :class => "required"}
+
+          %tr
+            %td{:style => "color:#4B4B4B; width: 230px;", :id => "column1"}
+              %strong= f.label :perfil_estado_civil, "Estado civil"
+            %td{:style => "color:#4B4B4B;"}
+              %strong= f.label :perfil_date_licence, "Data da 1ª habilitação"
+          %tr{:style => "vertical-align: middle;"}
+            %td          
+              = f.select :perfil_estado_civil, options_for_select([["Solteiro(a)", 0], ["Casado(a)", 1], ["União Estável (minimo 2 anos)", 2], ["Separado(a)", 3], ["Divorciado(a)", 4], ["Viúvo(a)", 5]]), {:prompt => "Selecione"}, {:style => "width: 217px;", :class => "required"}
+            %td
+              = f.text_field :perfil_date_licence, :style => "width: 195px", :alt => "date", :class => "required"
+
+          %tr
+            %td{:style => "color:#4B4B4B; width: 230px;", :id => "column1"}
+              %strong= f.label :perfil_cnh, "Nº da CNH (opcional)"
+            %td{:style => "color:#4B4B4B; width: 230px;", :id => "column1"}
+              %strong= f.label :perfil_escolaridade, "Escolaridade"
+          %tr{:style => "vertical-align: middle;"}
+            %td
+              = f.text_field :perfil_cnh, :style => "width: 195px"
+            %td          
+              = f.select :perfil_escolaridade, options_for_select([["Fundamental", 0], ["Médio", 1], ["Superior", 2]]), {:prompt => "Selecione"}, {:style => "width: 217px;", :class => "required"}
+
+          %tr
+            %td{:style => "color:#4B4B4B;"}
+              %strong= f.label :perfil_estuda, "Estuda atualmente?"
+            %td{:style => "color:#4B4B4B; width: 230px;", :id => "column1"}
+              %strong= f.label :perfil_tipo_residencia, "Tipo de residência"
+          %tr{:style => "vertical-align: middle;"}
+            %td          
+              = f.select :perfil_estuda, options_for_select([["Sim", 0], ["Não", 1]]), {:prompt => "Selecione"}, {:class => "required", :style => "width: 217px;"}
+            %td
+              = f.select :perfil_tipo_residencia, options_for_select([["Apartamento", 0], ["Apartamento (cond. fechado)", 1], ["Casa", 2], ["Casa (cond. fechado)", 3]]), {:prompt => "Selecione"}, {:style => "width: 217px;", :class => "required"}          
+
+          %tr
+            %td{:style => "color:#4B4B4B;"}
+              %strong= f.label :perfil_situacao_residencia, "Situação da residência"
+            %td{:style => "color:#4B4B4B;"}
+              %strong= f.label :perfil_qtde_veiculos, "Qtde de veíc. na residência?"
+          %tr{:style => "vertical-align: middle;"}
+            %td
+              = f.select :perfil_situacao_residencia, options_for_select([["Própria", 0], ["Alugada", 1]]), {:prompt => "Selecione"}, {:class => "required", :style => "width: 217px;"}
+            %td
+              = f.text_field :perfil_qtde_veiculos, :style => "width: 195px", :class => "required", :alt => "integer"
+
+          %tr
+            %td{:colspan => "2", :style => "color:#4B4B4B;"}
+              %strong= f.label :insurance_type, "Uso comercial do veículo?"
+          %tr{:style => "vertical-align: middle;"}
+            %td{:colspan => "2"}
+              = f.select :uso_comercial, options_for_select([["Sim", 0],["Não", 1]]), {:prompt => "Selecione"}, {:style => "width: 451px", :class => "required"}
+
+          %tr
+            %td{:colspan => "2", :style => "color:#4B4B4B;"}
+              %strong= f.label "Possui garagem?"
+          %tr{:style => "vertical-align: middle;", :id => "perfil_garagem"}
+            %td{:colspan => "2"}
+              = f.check_box :perfil_garagem_residencia
+              = f.label "Na residência"
+              %br/
+              = f.check_box :perfil_garagem_trabalho
+              = f.label "No trabalho"
+              %br/
+              = f.check_box :perfil_garagem_escola
+              = f.label "Na escola/faculdade/pós"
+              %br/
+              = f.check_box :perfil_garagem_nao_trabalha
+              = f.label "Não trabalha ou não utiliza para ir ao trabalho"
+              %br/
+              = f.check_box :perfil_garagem_nao_estuda
+              = f.label "Não estuda ou não utiliza para ir a escola/faculdade/pós"
+              %br/
+              = f.check_box :perfil_garagem_nao
+              = f.label "Não possui garagem"
+
+          %tr{:style => "vertical-align: middle; text-align: right;"}
+            %td{:colspan => "2", :style => "height: 60px;"}
+              = link_to "Voltar", "", :class => "button_link", :onclick => "goStep(1, '#quote_city_circulation', 2); return false;"
+              = link_to "Continuar", "", :class => "button_link", :onclick => "goStep(3, '#quote_condutor_1_name', 3); return false;"
+      %div{:id => "step_4_auto"}
+        %p{:style => "font-size:18pt; font-weight:bold; letter-spacing:-1px; padding-bottom:5px; color: #4B4B4B"}
+          Pedido de cotação de automóvel.
+        %br/
+        %p
+          Caso não seja o único condutor residente maior de 18 anos informe os dados dos
+          demais condutores abaixo e clique finalizar.
+        %br/
+        %table{:border => "0", :style => "width: 470px;"}
+          %tr
+            %td{:colspan => "2", :style => "border-bottom: 1px solid #DDD;"}
+              1º Condutor
+          
+          %tr
+            %td{:style => "color:#4B4B4B; width: 230px;", :id => "column1"}
+              %strong= f.label :condutor_1_name, "Nome"
+            %td{:style => "color:#4B4B4B;"}
+              %strong= f.label :condutor_1_birth, "Data de nascimento"
+          %tr{:style => "vertical-align: middle;"}
+            %td{:style => "width: 232px;"}
+              = f.text_field :condutor_1_name, :maxlength => 50, :style => "width: 195px;"
+            %td
+              = f.text_field :condutor_1_birth, :style => "width: 195px", :alt => "date"
+
+          %tr
+            %td{:style => "color:#4B4B4B; width: 230px;", :id => "column1"}
+              %strong= f.label :condutor_1_sex, "Sexo"
+            %td{:style => "color:#4B4B4B;"}
+              %strong= f.label :condutor_1_date_licence, "Data da 1ª habilitação"
+          %tr{:style => "vertical-align: middle;"}
+            %td          
+              = f.select :condutor_1_sex, options_for_select([["Masculino", 0], ["Feminino", 1]]), {:prompt => "Selecione"}, {:style => "width: 217px;"}
+            %td
+              = f.text_field :condutor_1_date_licence, :style => "width: 195px", :alt => "date"
+
+          %tr
+            %td{:style => "color:#4B4B4B; width: 230px;", :id => "column1"}
+              %strong= f.label :condutor_1_estado_civil, "Estado civil"
+            %td{:style => "color:#4B4B4B;"}
+              %strong= f.label :condutor_1_grau_parentesco, "Grau de parentesco"
+          %tr{:style => "vertical-align: middle;"}
+            %td    
+              = f.select :condutor_1_estado_civil, options_for_select([["Solteiro(a)", 0], ["Casado(a)", 1], ["União Estável (minimo 2 anos)", 2], ["Separado(a)", 3], ["Divorciado(a)", 4], ["Viúvo(a)", 5]]), {:prompt => "Selecione"}, {:style => "width: 217px;"}
+            %td
+              = f.select :condutor_1_grau_parentesco, options_for_select([["Próprio", 0],["Cônjuge", 1], ["Filhos", 2], ["Pais", 3], ["Outros", 4]]), {:prompt => "Selecione"}, {:style => "width: 217px;"}
+
+          %tr
+            %td{:colspan => "2", :style => "border-bottom: 1px solid #DDD;"}
+              2º Condutor
+          
+          %tr
+            %td{:style => "color:#4B4B4B; width: 230px;", :id => "column1"}
+              %strong= f.label :condutor_2_name, "Nome"
+            %td{:style => "color:#4B4B4B;"}
+              %strong= f.label :condutor_2_birth, "Data de nascimento"
+          %tr{:style => "vertical-align: middle;"}
+            %td{:style => "width: 232px;"}
+              = f.text_field :condutor_2_name, :maxlength => 50, :style => "width: 195px;"
+            %td
+              = f.text_field :condutor_2_birth, :style => "width: 195px", :alt => "date"
+
+          %tr
+            %td{:style => "color:#4B4B4B; width: 230px;", :id => "column1"}
+              %strong= f.label :condutor_2_sex, "Sexo"
+            %td{:style => "color:#4B4B4B;"}
+              %strong= f.label :condutor_2_date_licence, "Data da 1ª habilitação"
+          %tr{:style => "vertical-align: middle;"}
+            %td          
+              = f.select :condutor_2_sex, options_for_select([["Masculino", 0], ["Feminino", 1]]), {:prompt => "Selecione"}, {:style => "width: 217px;"}
+            %td
+              = f.text_field :condutor_2_date_licence, :style => "width: 195px", :alt => "date"
+
+          %tr
+            %td{:style => "color:#4B4B4B; width: 230px;", :id => "column1"}
+              %strong= f.label :condutor_2_estado_civil, "Estado civil"
+            %td{:style => "color:#4B4B4B;"}
+              %strong= f.label :condutor_2_grau_parentesco, "Grau de parentesco"
+          %tr{:style => "vertical-align: middle;"}
+            %td    
+              = f.select :condutor_2_estado_civil, options_for_select([["Solteiro(a)", 0], ["Casado(a)", 1], ["União Estável (minimo 2 anos)", 2], ["Separado(a)", 3], ["Divorciado(a)", 4], ["Viúvo(a)", 5]]), {:prompt => "Selecione"}, {:style => "width: 217px;"}
+            %td
+              = f.select :condutor_2_grau_parentesco, options_for_select([["Próprio", 0],["Cônjuge", 1], ["Filhos", 2], ["Pais", 3], ["Outros", 4]]), {:prompt => "Selecione"}, {:style => "width: 217px;"}
+
+          %tr{:style => "vertical-align: middle; text-align: right;"}
+            %td{:colspan => "2", :style => "height: 60px;"}
+              = link_to "Voltar", "", :class => "button_link", :onclick => "goStep(2, '#quote_perfil_name', 3); return false;"
+              = link_to "Finalizar", "#", :id => "finalizar", :class => "button_link", :onclick => "sendForm('form#quote');"
+      %div{:id => "step_5"}
+        %p{:style => "font-size:18pt; font-weight:bold; letter-spacing:-1px; padding-bottom:5px; color: #4B4B4B"}
+          - if params[:sucesso] == "true"
+            Obrigado por solicitar sua cotação conosco!
+            %br/
+            %br/
+            Entraremos em contato através do telefone ou e-mail informado tão logo os cálculos estejam concluidos.
+          - else
+            Desculpe estamos tendo alguma problema e não conseguimos enviar sua solicitação.
+            %br/
+            %br/
+            Entre em contato conosco através dos números: 
+            %br/
+            %br/
+            (44) 3233-2184 / 3232-1896.
+
+  #content_right{:style => "border-left: 1px solid #DDD; padding-left: 20px; height: 780px;"}
+    %p{:style => "font-size:18pt; font-weight:bold; letter-spacing:-1px; padding-bottom:5px; color: #4B4B4B"}
+      Confira como funciona:
+    %ul.step_quote
+      %li{:id => "info_step_1", :style => "color: #0291C9"}
+        %span 1
+        Preencha os dados da pessoa que será segurada
+      %li{:id => "info_step_2"}
+        %span 2
+        Preencha os dados do item a ser segurado
+      %li{:id => "info_step_3"}
+        %span 3
+        Preencha os dados complementares
+      %li{:id => "info_step_4"}
+        %span 4
+        Entraremos em contato para apresentar uma cotação
+/[If IE 7]
+  #force_space{:style => "clear: left"}
+
+:javascript 
+  checkOldBrowsers();
+  
+  // Verifica se o e-mail foi enviado com sucesso
+  var sucesso = _GET("sucesso");
+
+  if(sucesso == "true" || sucesso == "false") {
+    showHideStep("auto", 5, 5);
+    $("#info_step_4").css("color", "#0291C9");
+  } else {
+    showHideStep("auto", 5, 1);
+  }
+
+  // Configurações iniciais
+  $('html, body').animate({ scrollTop: 500 }, 'slow');
+  $("#cotacao").css("color", "#FFF");    
+  $("#quote_name").focus();
+  $('input:text').setMask();
+  validate(["#quote"]);
+  
+  // Bloqueia a tecla enter no form
+  blockEnter("#quote_form");
+
+  // Dicas tipo balloon
+  tipTip("#quote_number_home", "Informe a identificação completa da sua residência. Ex. 255, apto 10, 2ª andar.", "focus");
+  tipTip("#quote_model", "Informe o modelo completo do seu veículo. Ex. Palio 1.0 8v Fire, Gol CL 1.0.", "focus");
+  tipTip("#quote_km_mes", "Multiplique a kilometragem média percorrida diariamente por 30 para preencher este campo.", "focus");
+  tipTip("#quote_actual_insurance", "Você informou que seu seguro não é novo. Qual sua atual seguradora?", "focus");
+  tipTip("#quote_actual_insurance_bonus", "Caso tenha utilizado o seguro durante o ano por danos ao próprio veículo ou a terceiros, desconte 1 (uma) classe por evento.", "focus");
+  tipTip("#quote_actual_insurance_maturity", "Informe a data de vencimento da sua atual apólice. Para fins de renovação é possível utilizar apólices vencidas a até 120 dias.", "focus");
+  tipTip("#relacao_cond_seg", "O principal condutor é a pessoa que utiliza o veículo, no mínimo 85% do tempo da semana e que tenha idade superior a 24 anos. Caso haja outras pessoas, além desta, que utilizam o veículo mais que 15% do tempo da semana, ou seja, na hipótese de não se conseguir definir o principal condutor, deve-se considerar os dados da pessoa mais jovem.", "hover");
+  tipTip("#quote_perfil_cnh", "Motorista sem pontos na habilitação PODE ganhar até 5% de desconto no seguro.", "focus");
+  tipTip("#quote_perfil_qtde_veiculos", "Considere o veículo segurado.", "focus");
+  tipTip("#perfil_garagem", "Somente serão consideradas as garagens e estacionamentos fechados com portões e grades ou que possuam vigilância permanente, com identificação na entrada e saída.", "hover");
+
+  // Exibe os dados de renovação caso o seguro seja deste tipo
+  function showRenew() {
+    if($("#quote_insurance_new").val() == "0") {
+      $(".renew").hide();
+    } else {
+      $(".renew").show();
+    }   
+  }
+
+  // Controle do bloqueio/desbloqueio do campo zero kilometro
+  $("#quote_year_maker").change(function () {
+    var data = new Date();
+    var ano = data.getFullYear();
+    if($(this).val() >= ano - 1 && $("#quote_year_model").val() >= ano - 1) {
+      $("#quote_zero").removeAttr('disabled');
+      $("#quote_zero").attr('class', 'required');
+    } else {
+      $("#quote_zero").find('option:first').attr('selected', 'selected').parent('select');
+      $("#quote_zero").attr('disabled', true);
+    }
+  });
+
+  $("#quote_year_model").change(function () {
+    var data = new Date();
+    var ano = data.getFullYear();
+    if($("#quote_year_maker").val() >= ano - 1 && $(this).val() >= ano - 1) {
+      $("#quote_zero").removeAttr('disabled');
+      $("#quote_zero").attr('class', 'required');
+    } else {
+      $("#quote_zero").find('option:first').attr('selected', 'selected').parent('select');
+      $("#quote_zero").attr('disabled', true);
+    }    
+  });
+
+  // Controle do bloqueio/desbloqueio da relação do segurado com o condutor
+  $("#quote_relacao_cond_seg_prprio").click(function () {
+    if($(this).is(':checked') == true) {
+      $("#quote_relacao_cond_seg_outro_name").val("").attr('disabled', true).removeAttr('class');
+      $("#quote_perfil_name").val($('#quote_name').val() == "" ? "" : $('#quote_name').val()).attr('readonly', true);
+      $("#quote_perfil_cpf").val($('#quote_cpf').val() == "" ? "" : $('#quote_cpf').val()).attr('readonly', true);
+      $("#quote_perfil_birth").val($('#quote_birth').val() == "" ? "" : $('#quote_birth').val()).attr('readonly', true);
+      $("#quote_perfil_sex").focus();
+    }
+  });
+
+  $("#quote_relacao_cond_seg_cnjuge").click(function () {
+    if($(this).is(':checked') == true) {
+      $("#quote_relacao_cond_seg_outro_name").val("").attr('disabled', true).removeAttr('class');
+      $("#quote_perfil_name").val("").removeAttr('readonly');
+      $("#quote_perfil_cpf").val("").removeAttr('readonly');
+      $("#quote_perfil_birth").val("").removeAttr('readonly');
+      $("#quote_perfil_name").focus();
+    }
+  });
+
+  $("#quote_relacao_cond_seg_filho").click(function () {
+    if($(this).is(':checked') == true) {
+      $("#quote_relacao_cond_seg_outro_name").val("").attr('disabled', true).removeAttr('class');;
+      $("#quote_perfil_name").val("").removeAttr('readonly');
+      $("#quote_perfil_cpf").val("").removeAttr('readonly');
+      $("#quote_perfil_birth").val("").removeAttr('readonly');
+      $("#quote_perfil_name").focus();
+    }
+  });
+
+  $("#quote_relacao_cond_seg_outro").click(function () {
+    if($(this).is(':checked') == true) {
+      $("#quote_relacao_cond_seg_outro_name").attr('class', 'required').removeAttr('disabled');
+      $("#quote_perfil_name").val("").removeAttr('readonly');
+      $("#quote_perfil_cpf").val("").removeAttr('readonly');
+      $("#quote_perfil_birth").val("").removeAttr('readonly');
+      $("#quote_relacao_cond_seg_outro_name").focus();
+    }
+  });
